@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#070b14" />
-  <title>Sara's One Piece Journey — Grand Line Logbook</title>
+  <title>Sara's One Piece Journey</title>
 
   <!-- 1. DNS & SOCKET PRE-WARMING FOR GOOGLE DRIVE STREAMING -->
   <link rel="preconnect" href="https://drive.google.com" crossorigin>
@@ -13,7 +13,7 @@
   <link rel="dns-prefetch" href="https://lh3.googleusercontent.com">
   <link rel="dns-prefetch" href="https://docs.google.com">
 
-  <!-- GOOGLE FONTS: CINZEL & PLUS JAKARTA SANS -->
+  <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -35,9 +35,6 @@
       --text-secondary: #94a3b8;
       --border-subtle: rgba(229, 184, 75, 0.22);
       --shadow-elevation: 0 20px 50px rgba(0, 0, 0, 0.7);
-      --radius-lg: 14px;
-      --radius-md: 10px;
-      --radius-sm: 6px;
       --font-heading: 'Cinzel', Georgia, serif;
       --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -55,31 +52,41 @@
 
     body {
       background-color: var(--bg-abyss);
-      /* Static, GPU-friendly nautical cartography backdrop */
       background-image:
-        radial-gradient(circle at 15% 10%, rgba(229, 184, 75, 0.08) 0%, transparent 40%),
-        radial-gradient(circle at 85% 85%, rgba(217, 56, 58, 0.06) 0%, transparent 45%),
+        radial-gradient(circle at 14% 12%, rgba(229, 184, 75, 0.09) 0%, transparent 38%),
+        radial-gradient(circle at 86% 84%, rgba(217, 56, 58, 0.07) 0%, transparent 42%),
         linear-gradient(rgba(229, 184, 75, 0.025) 1px, transparent 1px),
         linear-gradient(90deg, rgba(229, 184, 75, 0.025) 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+      background-size: 100% 100%, 100% 100%, 56px 56px, 56px 56px;
       background-attachment: fixed;
       color: var(--text-primary);
       font-family: var(--font-body);
-      line-height: 1.5;
       min-height: 100vh;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
       transition: background-color 0.3s ease;
     }
 
-    /* Theater Mode ("Lights Off") State */
+    /* Static Nautical Compass Rose Watermark */
+    .nautical-watermark {
+      position: fixed;
+      right: -110px;
+      bottom: -110px;
+      width: 480px;
+      height: 480px;
+      opacity: 0.035;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Theater Mode ("Lights Off") */
     body.theater-mode {
       background-color: #020408;
       background-image: none;
     }
 
     body.theater-mode .top-header {
-      opacity: 0.25;
+      opacity: 0.2;
       transition: opacity 0.25s ease;
     }
 
@@ -98,13 +105,13 @@
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border-subtle);
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
     }
 
     .header-inner {
       max-width: 1600px;
       margin: 0 auto;
-      padding: 0.85rem 1.5rem;
+      padding: 0.75rem 1.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -112,180 +119,167 @@
       flex-wrap: wrap;
     }
 
-    /* Brand Identity */
     .brand-group {
       display: flex;
       align-items: center;
-      gap: 0.9rem;
+      gap: 0.85rem;
       text-decoration: none;
       color: inherit;
     }
 
-    .brand-emblem {
+    .brand-crest {
       width: 46px;
       height: 46px;
       border-radius: 50%;
-      background: linear-gradient(135deg, rgba(229, 184, 75, 0.18), rgba(217, 56, 58, 0.15));
-      border: 1px solid var(--gold-primary);
+      background: radial-gradient(circle at 35% 35%, #1e2f4d, #090f1d);
+      border: 1.5px solid var(--gold-primary);
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 0 18px rgba(229, 184, 75, 0.22);
       flex-shrink: 0;
-      box-shadow: 0 0 18px rgba(229, 184, 75, 0.2);
     }
 
-    .brand-titles h1 {
+    .brand-title {
       font-family: var(--font-heading);
-      font-size: clamp(1.15rem, 2vw, 1.5rem);
+      font-size: clamp(1.15rem, 1.9vw, 1.45rem);
       font-weight: 800;
-      letter-spacing: 0.04em;
-      color: var(--gold-light);
-      line-height: 1.15;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+      letter-spacing: 0.05em;
+      background: linear-gradient(90deg, #ffffff 0%, var(--gold-light) 60%, var(--gold-primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    .brand-titles p {
-      font-size: 0.76rem;
-      color: var(--text-secondary);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 600;
-      margin-top: 0.1rem;
-    }
-
-    /* Center/Right: Bounty & Voyage Progress Tracker */
-    .voyage-hud {
+    /* Center: Wanted Bounty Plaque + Sailing Ship Progress Wave */
+    .grand-line-hud {
       display: flex;
       align-items: center;
-      gap: 1.25rem;
-      background: rgba(7, 11, 20, 0.65);
+      gap: 1.1rem;
+      background: rgba(7, 11, 20, 0.72);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      padding: 0.55rem 1rem;
+      border-radius: 999px;
+      padding: 0.4rem 1.1rem 0.4rem 0.55rem;
       flex: 1;
-      max-width: 580px;
-      min-width: 280px;
+      max-width: 540px;
+      min-width: 260px;
     }
 
-    .bounty-box {
+    .wanted-plaque {
       display: flex;
-      flex-direction: column;
-      padding-right: 1rem;
-      border-right: 1px solid var(--border-subtle);
+      align-items: center;
+      gap: 0.45rem;
+      background: linear-gradient(135deg, rgba(229, 184, 75, 0.2), rgba(229, 184, 75, 0.05));
+      border: 1px solid rgba(229, 184, 75, 0.4);
+      border-radius: 999px;
+      padding: 0.3rem 0.8rem;
       flex-shrink: 0;
     }
 
-    .bounty-label {
-      font-size: 0.65rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-secondary);
-      font-weight: 700;
+    .wanted-tag {
+      font-family: var(--font-heading);
+      font-size: 0.64rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      color: var(--gold-primary);
     }
 
-    .bounty-amount {
+    .bounty-value {
       font-family: var(--font-heading);
-      font-size: 1.05rem;
+      font-size: 0.95rem;
       font-weight: 800;
       color: var(--gold-light);
-      letter-spacing: 0.03em;
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
     }
 
-    .bounty-symbol {
-      color: var(--gold-primary);
-      font-weight: 800;
-    }
-
-    .progress-box {
+    .voyage-track-wrap {
       flex: 1;
       display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-
-    .progress-meta {
-      display: flex;
-      justify-content: space-between;
       align-items: center;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--text-primary);
+      gap: 0.75rem;
     }
 
-    .progress-pct {
-      color: var(--gold-primary);
-      font-weight: 700;
-    }
-
-    .progress-track {
-      width: 100%;
+    .sea-track {
+      flex: 1;
       height: 7px;
       background: rgba(255, 255, 255, 0.08);
       border-radius: 999px;
-      overflow: hidden;
+      position: relative;
+      overflow: visible;
+    }
+
+    .sea-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--crimson-accent), var(--gold-primary), var(--sea-teal));
+      border-radius: 999px;
+      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       position: relative;
     }
 
-    .progress-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--crimson-accent), var(--gold-primary), var(--gold-light));
-      border-radius: 999px;
-      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    .ship-marker {
+      position: absolute;
+      right: -11px;
+      top: 50%;
+      transform: translateY(-58%);
+      width: 24px;
+      height: 24px;
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.85));
     }
 
-    /* Right Action Button */
-    .header-actions {
-      display: flex;
-      align-items: center;
-      gap: 0.65rem;
-    }
-
-    .btn-resume {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: linear-gradient(135deg, rgba(229, 184, 75, 0.16), rgba(229, 184, 75, 0.06));
+    .voyage-count-pill {
+      font-size: 0.76rem;
+      font-weight: 700;
       color: var(--gold-light);
-      border: 1px solid var(--gold-primary);
-      padding: 0.55rem 0.95rem;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-body);
-      font-size: 0.82rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s ease, transform 0.15s ease;
       white-space: nowrap;
     }
 
-    .btn-resume:hover {
-      background: rgba(229, 184, 75, 0.26);
-      transform: translateY(-1px);
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
     }
 
-    .btn-resume:active {
-      transform: translateY(0);
+    .btn-header {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: rgba(21, 34, 56, 0.8);
+      color: var(--gold-light);
+      border: 1px solid var(--border-subtle);
+      padding: 0.5rem 0.9rem;
+      border-radius: 999px;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.18s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn-header:hover {
+      background: rgba(229, 184, 75, 0.22);
+      border-color: var(--gold-primary);
+      transform: translateY(-1px);
     }
 
     /* ==========================================================================
        MAIN 2-COLUMN WORKSPACE
        ========================================================================== */
     .workspace {
+      position: relative;
+      z-index: 1;
       max-width: 1600px;
       margin: 0 auto;
-      padding: 1.5rem;
+      padding: 1.35rem 1.5rem 2rem;
       display: grid;
-      grid-template-columns: 1fr 390px;
-      gap: 1.5rem;
+      grid-template-columns: 1fr 370px;
+      gap: 1.35rem;
       align-items: start;
     }
 
     body.theater-mode .workspace {
       grid-template-columns: 1fr;
-      max-width: 1380px;
+      max-width: 1360px;
     }
 
     body.theater-mode .playlist-sidebar {
@@ -298,17 +292,21 @@
     .theater-stage {
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 0.9rem;
       min-width: 0;
     }
 
-    /* 1. Top Episode Info Banner (Directly ABOVE the Video Player) */
+    /* Top Episode Banner (Clean & Visual, Not Text Heavy) */
     .episode-banner {
-      background: var(--bg-navy);
+      background: linear-gradient(90deg, rgba(13, 21, 38, 0.95) 0%, rgba(21, 34, 56, 0.85) 100%);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 1.15rem 1.35rem;
+      border-radius: 12px;
+      padding: 0.85rem 1.2rem;
       box-shadow: var(--shadow-elevation);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
       position: relative;
       overflow: hidden;
     }
@@ -316,95 +314,92 @@
     .episode-banner::before {
       content: "";
       position: absolute;
-      top: 0;
       left: 0;
+      top: 0;
+      bottom: 0;
       width: 4px;
-      height: 100%;
       background: linear-gradient(180deg, var(--gold-primary), var(--crimson-accent));
     }
 
-    .banner-row-badges {
+    .banner-left {
       display: flex;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-bottom: 0.55rem;
+      gap: 0.75rem;
+      min-width: 0;
     }
 
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.35rem;
-      font-size: 0.72rem;
-      font-weight: 700;
+    .arc-pill {
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--bg-abyss);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      padding: 0.25rem 0.65rem;
-      border-radius: 999px;
-    }
-
-    .badge-arc {
-      background: rgba(229, 184, 75, 0.14);
-      color: var(--gold-light);
-      border: 1px solid rgba(229, 184, 75, 0.35);
-    }
-
-    .badge-ep {
-      background: var(--crimson-accent);
-      color: #ffffff;
-    }
-
-    .badge-type-canon {
-      background: rgba(56, 189, 248, 0.14);
-      color: #7dd3fc;
-      border: 1px solid rgba(56, 189, 248, 0.3);
-    }
-
-    .badge-type-filler {
-      background: rgba(244, 114, 182, 0.14);
-      color: #f9a8d4;
-      border: 1px solid rgba(244, 114, 182, 0.3);
-    }
-
-    .badge-status-completed {
-      background: rgba(45, 212, 191, 0.15);
-      color: var(--sea-teal);
-      border: 1px solid rgba(45, 212, 191, 0.4);
-      margin-left: auto;
-    }
-
-    .badge-status-current {
-      background: rgba(229, 184, 75, 0.12);
-      color: var(--gold-primary);
-      border: 1px solid rgba(229, 184, 75, 0.3);
-      margin-left: auto;
+      flex-shrink: 0;
     }
 
     .banner-title {
-      font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+      font-size: clamp(1.1rem, 1.9vw, 1.45rem);
       font-weight: 700;
       color: var(--text-primary);
-      line-height: 1.25;
-      letter-spacing: -0.01em;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .banner-note {
-      margin-top: 0.3rem;
-      font-size: 0.86rem;
-      color: var(--text-secondary);
+    .status-gem {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.26rem 0.65rem;
+      border-radius: 999px;
+      flex-shrink: 0;
     }
 
-    /* 2. The 16:9 Video Frame Container */
+    .status-gem.is-completed {
+      background: rgba(45, 212, 191, 0.15);
+      color: var(--sea-teal);
+      border: 1px solid rgba(45, 212, 191, 0.4);
+    }
+
+    .status-gem.is-voyage {
+      background: rgba(229, 184, 75, 0.12);
+      color: var(--gold-light);
+      border: 1px solid rgba(229, 184, 75, 0.3);
+    }
+
+    /* 16:9 Video Frame Container */
     .player-frame-shell {
       position: relative;
       width: 100%;
       aspect-ratio: 16 / 9;
       background: #03060c;
       border-radius: 12px;
-      border: 1px solid rgba(229, 184, 75, 0.35);
+      border: 1px solid rgba(229, 184, 75, 0.38);
       box-shadow: var(--shadow-elevation);
       overflow: hidden;
     }
+
+    .brass-corner {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      border-color: var(--gold-primary);
+      border-style: solid;
+      z-index: 3;
+      pointer-events: none;
+      opacity: 0.75;
+    }
+    .brass-corner.tl { top: 6px; left: 6px; border-width: 2px 0 0 2px; border-top-left-radius: 4px; }
+    .brass-corner.bl { bottom: 6px; left: 6px; border-width: 0 0 2px 2px; border-bottom-left-radius: 4px; }
+    .brass-corner.br { bottom: 6px; right: 6px; border-width: 0 2px 2px 0; border-bottom-right-radius: 4px; }
 
     #player-viewport {
       width: 100%;
@@ -418,10 +413,10 @@
       height: 100%;
       border: 0;
       display: block;
-      background: #000;
+      background: #070b14;
     }
 
-    /* Google Drive Pop-out Corner Shield (52px x 52px top-right) */
+    /* Top-Right Pop-Out Corner Shield (52px x 52px) */
     .drive-popout-shield {
       width: 52px;
       height: 52px;
@@ -429,8 +424,8 @@
       top: 0;
       right: 0;
       z-index: 5;
-      background: rgba(7, 11, 20, 0.88);
-      border-bottom-left-radius: 10px;
+      background: radial-gradient(circle at top right, #152238, rgba(7, 11, 20, 0.92));
+      border-bottom-left-radius: 12px;
       border-left: 1px solid var(--border-subtle);
       border-bottom: 1px solid var(--border-subtle);
       display: flex;
@@ -439,7 +434,6 @@
       color: var(--gold-primary);
       cursor: default;
       user-select: none;
-      transition: opacity 0.2s ease;
     }
 
     .drive-popout-shield.shield-disabled {
@@ -447,32 +441,17 @@
       pointer-events: none;
     }
 
-    .drive-popout-shield:hover::after {
-      content: "Pop-out Shield Active";
-      position: absolute;
-      top: 56px;
-      right: 6px;
-      background: var(--bg-navy);
-      color: var(--text-secondary);
-      border: 1px solid var(--border-subtle);
-      padding: 0.25rem 0.55rem;
-      border-radius: 4px;
-      font-size: 0.68rem;
-      white-space: nowrap;
-      pointer-events: none;
-    }
-
-    /* Animated Log Pose Loading Overlay */
+    /* Animated Log Pose Compass Loading Overlay */
     .loading-overlay {
       position: absolute;
       inset: 0;
       z-index: 4;
-      background: radial-gradient(circle at center, #0d1526 0%, #050811 100%);
+      background: radial-gradient(circle at center, #101b30 0%, #050811 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.85rem;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.35s ease;
@@ -484,125 +463,64 @@
     }
 
     .compass-spinner {
-      width: 68px;
-      height: 68px;
-      animation: logPoseSpin 2.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+      width: 72px;
+      height: 72px;
+      animation: logPoseSpin 2.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
     }
 
     @keyframes logPoseSpin {
       0% { transform: rotate(0deg); }
-      40% { transform: rotate(205deg); }
-      60% { transform: rotate(165deg); }
+      35% { transform: rotate(195deg); }
+      65% { transform: rotate(155deg); }
       100% { transform: rotate(360deg); }
     }
 
     .loading-title {
       font-family: var(--font-heading);
       color: var(--gold-light);
-      font-size: 1.05rem;
-      letter-spacing: 0.08em;
+      font-size: 0.92rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
     }
 
-    .loading-sub {
-      font-size: 0.82rem;
-      color: var(--text-secondary);
-    }
-
-    /* Friendly Fallback Card When Drive Link Is Missing / Placeholder */
+    /* Fallback Card */
     .fallback-card {
       width: 100%;
       height: 100%;
-      background:
-        radial-gradient(circle at center, rgba(229, 184, 75, 0.09) 0%, transparent 65%),
-        var(--bg-navy);
+      background: radial-gradient(circle at center, rgba(229, 184, 75, 0.1) 0%, transparent 65%), var(--bg-navy);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 2rem;
-      gap: 0.9rem;
-    }
-
-    .fallback-icon {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      background: rgba(229, 184, 75, 0.12);
-      border: 1px solid var(--gold-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-primary);
+      padding: 1.75rem;
+      gap: 0.75rem;
     }
 
     .fallback-card h3 {
       font-family: var(--font-heading);
-      font-size: clamp(1.1rem, 2vw, 1.45rem);
       color: var(--gold-light);
+      font-size: 1.2rem;
     }
 
-    .fallback-card p {
-      max-width: 520px;
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-      line-height: 1.55;
-    }
-
-    .fallback-input-row {
-      display: flex;
-      gap: 0.5rem;
-      width: 100%;
-      max-width: 520px;
-      margin-top: 0.35rem;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-
-    .fallback-input {
-      flex: 1;
-      min-width: 220px;
-      background: var(--bg-abyss);
-      border: 1px solid var(--border-subtle);
-      color: var(--text-primary);
-      padding: 0.6rem 0.85rem;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-body);
-      font-size: 0.84rem;
-    }
-
-    .fallback-input:focus {
-      outline: none;
-      border-color: var(--gold-primary);
-    }
-
-    .fallback-actions {
-      display: flex;
-      gap: 0.65rem;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 0.25rem;
-    }
-
-    /* 3. Control Deck (Directly BELOW the Video Player) */
+    /* Control Deck */
     .control-deck {
       background: var(--bg-navy);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
-      padding: 0.9rem 1.2rem;
+      border-radius: 12px;
+      padding: 0.75rem 1.05rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 0.85rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
       box-shadow: var(--shadow-elevation);
-      position: relative;
     }
 
     .deck-group {
       display: flex;
       align-items: center;
-      gap: 0.6rem;
+      gap: 0.5rem;
       flex-wrap: wrap;
     }
 
@@ -610,42 +528,38 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 0.45rem;
+      gap: 0.42rem;
       font-family: var(--font-body);
-      font-size: 0.84rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      padding: 0.6rem 1rem;
-      border-radius: var(--radius-sm);
+      padding: 0.55rem 0.9rem;
+      border-radius: 8px;
       border: 1px solid var(--border-subtle);
       background: var(--bg-surface);
       color: var(--text-primary);
       cursor: pointer;
-      transition: background 0.18s ease, border-color 0.18s ease, transform 0.12s ease, opacity 0.18s ease;
+      transition: all 0.16s ease;
       user-select: none;
     }
 
     .btn:hover:not(:disabled) {
-      background: #1e304f;
+      background: #1d2f4d;
       border-color: var(--gold-primary);
     }
 
-    .btn:active:not(:disabled) {
-      transform: translateY(1px);
-    }
-
     .btn:disabled {
-      opacity: 0.38;
+      opacity: 0.35;
       cursor: not-allowed;
     }
 
-    .btn-next {
-      background: linear-gradient(135deg, var(--crimson-accent), #b02325);
-      border-color: rgba(250, 225, 156, 0.4);
-      color: #ffffff;
+    .btn-crimson {
+      background: linear-gradient(135deg, var(--crimson-accent), #a82022);
+      border-color: rgba(250, 225, 156, 0.38);
+      color: #fff;
     }
 
-    .btn-next:hover:not(:disabled) {
-      background: linear-gradient(135deg, #eb4244, #c92a2c);
+    .btn-crimson:hover:not(:disabled) {
+      background: linear-gradient(135deg, #ef4345, #c42729);
       border-color: var(--gold-light);
     }
 
@@ -653,34 +567,33 @@
       background: rgba(45, 212, 191, 0.16);
       border-color: var(--sea-teal);
       color: var(--sea-teal);
-      box-shadow: 0 0 16px rgba(45, 212, 191, 0.2);
+      box-shadow: 0 0 14px rgba(45, 212, 191, 0.2);
     }
 
     .btn-theater.is-active {
-      background: rgba(229, 184, 75, 0.2);
+      background: rgba(229, 184, 75, 0.22);
       border-color: var(--gold-primary);
       color: var(--gold-light);
     }
 
-    /* Subtitles Info Popover */
     .popover-wrapper {
       position: relative;
     }
 
     .subtitles-popover {
       position: absolute;
-      bottom: calc(100% + 12px);
+      bottom: calc(100% + 10px);
       right: 0;
-      width: 320px;
+      width: 260px;
       background: var(--bg-navy);
       border: 1px solid var(--gold-primary);
-      border-radius: var(--radius-md);
-      padding: 0.95rem 1.05rem;
-      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.85);
+      border-radius: 10px;
+      padding: 0.75rem 0.9rem;
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.85);
       z-index: 30;
-      font-size: 0.82rem;
-      color: var(--text-primary);
-      line-height: 1.5;
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      line-height: 1.45;
       display: none;
     }
 
@@ -688,32 +601,17 @@
       display: block;
     }
 
-    .subtitles-popover h4 {
-      font-family: var(--font-heading);
+    .subtitles-popover strong {
       color: var(--gold-light);
-      font-size: 0.9rem;
-      margin-bottom: 0.4rem;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .subtitles-popover p {
-      color: var(--text-secondary);
-      margin-bottom: 0.4rem;
-    }
-
-    .subtitles-popover p:last-child {
-      margin-bottom: 0;
     }
 
     /* ==========================================================================
-       RIGHT COLUMN: THE "LOG POSE" EPISODE PLAYLIST SIDEBAR
+       RIGHT COLUMN: CLEAN "LOG POSE" SIDEBAR (NO SAMPLE EPISODE 1/2/3 CLUTTER)
        ========================================================================== */
     .playlist-sidebar {
       background: var(--bg-navy);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-lg);
+      border-radius: 14px;
       box-shadow: var(--shadow-elevation);
       display: flex;
       flex-direction: column;
@@ -721,7 +619,7 @@
     }
 
     .sidebar-header {
-      padding: 1.1rem 1.25rem 0.9rem;
+      padding: 0.9rem 1.05rem;
       border-bottom: 1px solid var(--border-subtle);
       display: flex;
       align-items: center;
@@ -731,33 +629,22 @@
     .sidebar-title-wrap {
       display: flex;
       align-items: center;
-      gap: 0.55rem;
+      gap: 0.5rem;
     }
 
     .sidebar-title-wrap h2 {
       font-family: var(--font-heading);
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: var(--gold-light);
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
     }
 
-    .ep-total-pill {
-      font-size: 0.74rem;
-      font-weight: 700;
-      color: var(--gold-primary);
-      background: rgba(229, 184, 75, 0.12);
-      border: 1px solid var(--border-subtle);
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-    }
-
-    /* Search & Filter Controls */
     .sidebar-filters {
-      padding: 0.85rem 1.1rem;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-      background: rgba(7, 11, 20, 0.4);
+      padding: 0.7rem 0.9rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 0.5rem;
+      background: rgba(7, 11, 20, 0.45);
       border-bottom: 1px solid var(--border-subtle);
     }
 
@@ -769,7 +656,7 @@
 
     .search-box svg {
       position: absolute;
-      left: 0.75rem;
+      left: 0.65rem;
       color: var(--text-secondary);
       pointer-events: none;
     }
@@ -778,12 +665,11 @@
       width: 100%;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-sm);
+      border-radius: 7px;
       color: var(--text-primary);
       font-family: var(--font-body);
-      font-size: 0.84rem;
-      padding: 0.55rem 0.75rem 0.55rem 2.25rem;
-      transition: border-color 0.2s ease;
+      font-size: 0.8rem;
+      padding: 0.48rem 0.65rem 0.48rem 2rem;
     }
 
     .search-input:focus,
@@ -793,57 +679,48 @@
     }
 
     .arc-select {
-      width: 100%;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-sm);
+      border-radius: 7px;
       color: var(--text-primary);
       font-family: var(--font-body);
-      font-size: 0.82rem;
-      padding: 0.52rem 0.75rem;
+      font-size: 0.78rem;
+      padding: 0.48rem 0.55rem;
       cursor: pointer;
     }
 
-    /* Scrollable Episode List */
     .episode-list {
-      max-height: 640px;
+      max-height: 600px;
       overflow-y: auto;
-      padding: 0.75rem;
+      padding: 0.65rem;
       display: flex;
       flex-direction: column;
-      gap: 0.55rem;
+      gap: 0.45rem;
     }
 
     .episode-list::-webkit-scrollbar {
-      width: 7px;
+      width: 6px;
     }
-
     .episode-list::-webkit-scrollbar-track {
       background: var(--bg-abyss);
     }
-
     .episode-list::-webkit-scrollbar-thumb {
-      background: rgba(229, 184, 75, 0.35);
+      background: rgba(229, 184, 75, 0.32);
       border-radius: 999px;
     }
 
-    .episode-list::-webkit-scrollbar-thumb:hover {
-      background: var(--gold-primary);
-    }
-
-    /* Episode Card */
+    /* Clean Episode Card: Displays ONLY Your Exact Episode Name + Watched Check */
     .ep-card {
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
-      gap: 0.75rem;
-      padding: 0.8rem 0.9rem;
-      border-radius: var(--radius-md);
-      background: rgba(21, 34, 56, 0.55);
+      gap: 0.65rem;
+      padding: 0.7rem 0.85rem;
+      border-radius: 9px;
+      background: rgba(21, 34, 56, 0.5);
       border: 1px solid transparent;
       cursor: pointer;
-      transition: background 0.18s ease, border-color 0.18s ease, transform 0.15s ease;
-      text-align: left;
+      transition: background 0.16s ease, border-color 0.16s ease;
     }
 
     .ep-card:hover {
@@ -852,67 +729,34 @@
     }
 
     .ep-card.is-active {
-      background: var(--bg-surface);
+      background: linear-gradient(90deg, rgba(229, 184, 75, 0.16), rgba(21, 34, 56, 0.9));
       border-color: var(--gold-primary);
-      box-shadow: 0 0 20px rgba(229, 184, 75, 0.16);
+      box-shadow: 0 0 18px rgba(229, 184, 75, 0.14);
     }
 
-    .ep-card-left {
+    .ep-card-main {
       display: flex;
-      flex-direction: column;
-      gap: 0.32rem;
+      align-items: center;
+      gap: 0.65rem;
       min-width: 0;
       flex: 1;
     }
 
-    .ep-card-top-row {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      flex-wrap: wrap;
-    }
-
-    .ep-num-pill {
-      font-size: 0.7rem;
-      font-weight: 800;
-      letter-spacing: 0.05em;
-      padding: 0.12rem 0.48rem;
-      border-radius: 4px;
-      background: rgba(229, 184, 75, 0.15);
-      color: var(--gold-light);
-    }
-
-    .ep-card.is-active .ep-num-pill {
-      background: var(--gold-primary);
-      color: var(--bg-abyss);
-    }
-
-    .now-playing-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.3rem;
-      font-size: 0.65rem;
-      font-weight: 800;
-      color: var(--gold-primary);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-    }
-
-    .pulse-dot {
-      width: 6px;
-      height: 6px;
+    .compass-dot {
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
+      background: rgba(229, 184, 75, 0.35);
+      flex-shrink: 0;
+    }
+
+    .ep-card.is-active .compass-dot {
       background: var(--gold-primary);
-      animation: simpleFade 1.4s ease-in-out infinite alternate;
+      box-shadow: 0 0 8px var(--gold-primary);
     }
 
-    @keyframes simpleFade {
-      from { opacity: 0.35; }
-      to { opacity: 1; }
-    }
-
-    .ep-card-title {
-      font-size: 0.88rem;
+    .ep-name-text {
+      font-size: 0.86rem;
       font-weight: 600;
       color: var(--text-primary);
       display: -webkit-box;
@@ -922,85 +766,49 @@
       line-height: 1.35;
     }
 
-    .ep-card-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.45rem;
-      font-size: 0.72rem;
-      color: var(--text-secondary);
-    }
-
-    .ep-type-mini {
-      font-size: 0.66rem;
-      font-weight: 700;
-      padding: 0.05rem 0.4rem;
-      border-radius: 3px;
-      text-transform: uppercase;
-    }
-
-    .ep-type-mini.canon {
-      background: rgba(56, 189, 248, 0.14);
-      color: #7dd3fc;
-    }
-
-    .ep-type-mini.filler {
-      background: rgba(244, 114, 182, 0.14);
-      color: #f9a8d4;
-    }
-
-    /* Quick Watched Toggle Button on Each Card */
-    .ep-watch-check {
-      width: 30px;
-      height: 30px;
+    .ep-watch-btn {
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       border: 1px solid var(--border-subtle);
-      background: rgba(7, 11, 20, 0.6);
+      background: rgba(7, 11, 20, 0.55);
       color: var(--text-secondary);
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
       cursor: pointer;
-      transition: all 0.18s ease;
-      margin-top: 0.15rem;
+      flex-shrink: 0;
+      transition: all 0.15s ease;
     }
 
-    .ep-watch-check:hover {
+    .ep-watch-btn:hover {
       border-color: var(--sea-teal);
       color: var(--sea-teal);
     }
 
-    .ep-watch-check.is-watched {
+    .ep-watch-btn.is-watched {
       background: rgba(45, 212, 191, 0.18);
       border-color: var(--sea-teal);
       color: var(--sea-teal);
     }
 
-    .empty-filter-state {
-      padding: 2.2rem 1rem;
-      text-align: center;
-      color: var(--text-secondary);
-      font-size: 0.86rem;
-    }
-
-    /* Toast Notification */
     .toast {
       position: fixed;
-      bottom: 1.5rem;
-      right: 1.5rem;
+      bottom: 1.25rem;
+      right: 1.25rem;
       background: var(--bg-navy);
       border: 1px solid var(--gold-primary);
       color: var(--text-primary);
-      padding: 0.75rem 1.1rem;
-      border-radius: var(--radius-md);
+      padding: 0.65rem 1rem;
+      border-radius: 10px;
       box-shadow: var(--shadow-elevation);
-      font-size: 0.84rem;
+      font-size: 0.8rem;
       font-weight: 600;
-      z-index: 60;
+      z-index: 90;
       opacity: 0;
-      transform: translateY(12px);
+      transform: translateY(10px);
       pointer-events: none;
-      transition: opacity 0.25s ease, transform 0.25s ease;
+      transition: all 0.22s ease;
     }
 
     .toast.is-visible {
@@ -1008,53 +816,28 @@
       transform: translateY(0);
     }
 
-    /* ==========================================================================
-       RESPONSIVE BREAKPOINTS
-       ========================================================================== */
     @media (max-width: 1024px) {
       .workspace {
         grid-template-columns: 1fr;
       }
-
-      .voyage-hud {
+      .grand-line-hud {
         order: 3;
         max-width: 100%;
         width: 100%;
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 600px) {
       .header-inner {
-        padding: 0.75rem 1rem;
+        padding: 0.7rem 1rem;
       }
-
       .workspace {
         padding: 1rem;
       }
-
-      .voyage-hud {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.6rem;
-      }
-
-      .bounty-box {
-        border-right: none;
-        border-bottom: 1px solid var(--border-subtle);
-        padding-right: 0;
-        padding-bottom: 0.45rem;
-        width: 100%;
-      }
-
-      .progress-box {
-        width: 100%;
-      }
-
       .control-deck {
         flex-direction: column;
         align-items: stretch;
       }
-
       .deck-group {
         justify-content: space-between;
       }
@@ -1063,195 +846,193 @@
 </head>
 <body>
 
+  <!-- Static Nautical Compass Rose Watermark -->
+  <svg class="nautical-watermark" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <circle cx="100" cy="100" r="90" stroke="#e5b84b" stroke-width="1.5" stroke-dasharray="6 4"/>
+    <circle cx="100" cy="100" r="70" stroke="#e5b84b" stroke-width="1"/>
+    <polygon points="100,8 112,88 100,76 88,88" fill="#e5b84b"/>
+    <polygon points="100,192 112,112 100,124 88,112" fill="#e5b84b"/>
+    <polygon points="8,100 88,88 76,100 88,112" fill="#e5b84b"/>
+    <polygon points="192,100 112,88 124,100 112,112" fill="#e5b84b"/>
+  </svg>
+
   <!-- ==========================================================================
-       3A. STICKY TOP NAVIGATION HEADER
+       STICKY TOP HEADER
        ========================================================================== -->
   <header class="top-header">
     <div class="header-inner">
-      <!-- Left: Custom Inline SVG Straw Hat & Nautical Compass + Title -->
-      <a href="#top" class="brand-group" aria-label="Sara's One Piece Journey Home">
-        <div class="brand-emblem" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Nautical Compass Ring -->
-            <circle cx="32" cy="32" r="28" stroke="#e5b84b" stroke-width="2" stroke-dasharray="4 3" opacity="0.65"/>
-            <!-- Straw Hat Crown -->
-            <path d="M18 34C18 24.0589 24.268 16 32 16C39.732 16 46 24.0589 46 34H18Z" fill="#e5b84b"/>
-            <!-- Crimson Ribbon -->
+      <a href="#top" class="brand-group">
+        <div class="brand-crest" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
+            <circle cx="32" cy="32" r="27" stroke="#e5b84b" stroke-width="2" stroke-dasharray="4 3" opacity="0.7"/>
+            <path d="M18 34C18 24.1 24.3 16 32 16C39.7 16 46 24.1 46 34H18Z" fill="#e5b84b"/>
             <path d="M18.3 30.5H45.7V34.5H18.3V30.5Z" fill="#d9383a"/>
-            <!-- Straw Hat Brim -->
             <ellipse cx="32" cy="35.5" rx="23" ry="4.5" fill="#fae19c" stroke="#e5b84b" stroke-width="1.5"/>
           </svg>
         </div>
-        <div class="brand-titles">
-          <h1>Sara's One Piece Journey</h1>
-          <p>Log Pose Navigation Across the Grand Line</p>
-        </div>
+        <h1 class="brand-title">Sara's One Piece Journey</h1>
       </a>
 
-      <!-- Center/Right: Bounty & Voyage Progress Widget -->
-      <div class="voyage-hud" aria-label="Voyage and Bounty Progress">
-        <div class="bounty-box">
-          <span class="bounty-label">Sara's Pirate Bounty</span>
-          <div class="bounty-amount">
-            <span class="bounty-symbol">฿</span>
-            <span id="bounty-counter">0</span>
-          </div>
+      <!-- Wanted Bounty + Sailing Ship Progress Wave -->
+      <div class="grand-line-hud" aria-label="Bounty and Voyage Progress">
+        <div class="wanted-plaque">
+          <span class="wanted-tag">BOUNTY</span>
+          <span class="bounty-value">฿ <span id="bounty-counter">0</span></span>
         </div>
-        <div class="progress-box">
-          <div class="progress-meta">
-            <span id="progress-count-text">0 / 8 Episodes Completed</span>
-            <span class="progress-pct" id="progress-pct-text">0%</span>
+
+        <div class="voyage-track-wrap">
+          <div class="sea-track">
+            <div class="sea-fill" id="progress-fill-bar">
+              <svg class="ship-marker" viewBox="0 0 32 32" fill="none">
+                <path d="M6 21L9 26H23L26 21H6Z" fill="#e5b84b"/>
+                <path d="M16 5V21" stroke="#fae19c" stroke-width="2"/>
+                <path d="M16 6C21 9 23 14 16 18Z" fill="#d9383a"/>
+                <path d="M15 8C11 10 10 14 15 17Z" fill="#f1f5f9"/>
+              </svg>
+            </div>
           </div>
-          <div class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar-aria">
-            <div class="progress-fill" id="progress-fill-bar"></div>
-          </div>
+          <span class="voyage-count-pill" id="progress-count-text">0 / 0</span>
         </div>
       </div>
 
-      <!-- Right Action Button: Resume Last Watched -->
+      <!-- Right Actions -->
       <div class="header-actions">
-        <button type="button" class="btn-resume" id="btn-resume-last" title="Jump to your most recently selected episode">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <a
+          href="https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-header"
+          title="Open your Google Drive folder in a new tab"
+        >
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span>Drive Folder</span>
+        </a>
+
+        <button type="button" class="btn-header" id="btn-resume-last">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
             <polygon points="5 3 19 12 5 21 5 3"></polygon>
           </svg>
-          <span id="resume-btn-label">Resume Ep 01</span>
+          <span>Resume</span>
         </button>
       </div>
     </div>
   </header>
 
   <!-- ==========================================================================
-       3B. MAIN 2-COLUMN WORKSPACE
+       MAIN 2-COLUMN WORKSPACE
        ========================================================================== -->
   <main class="workspace" id="top">
 
-    <!-- LEFT COLUMN: THE THEATER STAGE -->
-    <section class="theater-stage" aria-label="Episode Video Theater">
+    <!-- LEFT COLUMN: THEATER STAGE -->
+    <section class="theater-stage">
 
-      <!-- 1. Top Episode Info Banner -->
+      <!-- 1. Episode Banner -->
       <div class="episode-banner">
-        <div class="banner-row-badges">
-          <span class="badge badge-arc" id="banner-arc-badge">EAST BLUE SAGA • ROMANCE DAWN ARC</span>
-          <span class="badge badge-ep" id="banner-ep-badge">EPISODE 01</span>
-          <span class="badge badge-type-canon" id="banner-type-badge">CANON</span>
-          <span class="badge badge-status-current" id="banner-status-badge">⏳ CURRENT VOYAGE</span>
+        <div class="banner-left">
+          <span class="arc-pill" id="banner-arc-badge">ROMANCE DAWN ARC</span>
+          <h2 class="banner-title" id="banner-ep-title">I'm Luffy! The Man Who's Gonna Be King of the Pirates!</h2>
         </div>
-        <h2 class="banner-title" id="banner-ep-title">I'm Luffy! The Man Who's Gonna Be King of the Pirates!</h2>
-        <p class="banner-note" id="banner-ep-note">Where the grand adventure begins!</p>
+        <span class="status-gem is-voyage" id="banner-status-badge">⏳ VOYAGE</span>
       </div>
 
-      <!-- 2. The 16:9 Video Frame Container -->
+      <!-- 2. 16:9 Video Frame Container -->
       <div class="player-frame-shell">
-        <!-- Corner Shield preventing accidental clicks on Google Drive's top-right Pop-out icon -->
-        <div class="drive-popout-shield" id="drive-corner-shield" title="Protected against accidental tab pop-out">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <span class="brass-corner tl"></span>
+        <span class="brass-corner bl"></span>
+        <span class="brass-corner br"></span>
+
+        <!-- Top-Right Pop-Out Corner Shield -->
+        <div class="drive-popout-shield" id="drive-corner-shield" title="Pop-out Shield Active">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
           </svg>
         </div>
 
         <!-- Animated Log Pose Compass Loading Overlay -->
         <div class="loading-overlay" id="player-loading-overlay" aria-hidden="true">
-          <svg class="compass-spinner" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="32" cy="32" r="28" stroke="#e5b84b" stroke-width="2.5" opacity="0.35"/>
-            <circle cx="32" cy="32" r="22" stroke="#fae19c" stroke-width="1.5" stroke-dasharray="4 4"/>
+          <svg class="compass-spinner" viewBox="0 0 64 64" fill="none">
+            <circle cx="32" cy="32" r="28" stroke="#e5b84b" stroke-width="2" opacity="0.35"/>
+            <circle cx="32" cy="32" r="21" stroke="#fae19c" stroke-width="1.5" stroke-dasharray="4 4"/>
             <polygon points="32,8 37,30 32,26 27,30" fill="#d9383a"/>
             <polygon points="32,56 37,34 32,38 27,34" fill="#e5b84b"/>
             <circle cx="32" cy="32" r="4" fill="#fae19c"/>
           </svg>
-          <div class="loading-title">Calibrating Log Pose...</div>
-          <div class="loading-sub">Establishing stream with Grand Line archives</div>
+          <div class="loading-title">Locking Log Pose...</div>
         </div>
 
         <!-- Single Dynamic Player Viewport -->
         <div id="player-viewport"></div>
       </div>
 
-      <!-- 3. Control Deck (Directly BELOW the Video Player) -->
+      <!-- 3. Control Deck -->
       <div class="control-deck">
-        <!-- Left Controls: Prev / Next -->
         <div class="deck-group">
           <button type="button" class="btn" id="btn-prev-ep">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
               <polyline points="15 18 9 12 15 6"></polyline>
             </svg>
-            <span>Previous Ep</span>
+            <span>Prev</span>
           </button>
 
-          <button type="button" class="btn btn-next" id="btn-next-ep">
-            <span>Next Ep</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <button type="button" class="btn btn-crimson" id="btn-next-ep">
+            <span>Next</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
               <polyline points="9 18 15 12 9 6"></polyline>
             </svg>
           </button>
         </div>
 
-        <!-- Right Controls: Watched, Theater Mode, Shield Toggle, Subtitles Tip -->
         <div class="deck-group">
           <button type="button" class="btn btn-watched" id="btn-mark-watched">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
-            <span id="watched-btn-text">Mark as Watched</span>
+            <span id="watched-btn-text">Watched</span>
           </button>
 
-          <button type="button" class="btn btn-theater" id="btn-theater-mode" title="Dim background and expand player">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-              <path d="M2 8h20"></path>
+          <button type="button" class="btn btn-theater" id="btn-theater-mode">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
             </svg>
-            <span id="theater-btn-text">Theater Mode</span>
+            <span id="theater-btn-text">Lights Off</span>
           </button>
 
-          <button type="button" class="btn" id="btn-toggle-shield" title="Lock or unlock Google Drive's top-right pop-out button">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-              <polyline points="15 3 21 3 21 9"></polyline>
-              <line x1="10" y1="14" x2="21" y2="3"></line>
+          <button type="button" class="btn" id="btn-toggle-shield" title="Toggle top-right Drive pop-out shield">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
             </svg>
-            <span id="shield-btn-text">Pop-out Shield: ON</span>
+            <span id="shield-btn-text">Shield: ON</span>
           </button>
 
           <div class="popover-wrapper">
             <button type="button" class="btn" id="btn-subtitles-tip" aria-expanded="false">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-              </svg>
-              <span>Subtitles Tip</span>
+              <span>CC / 1080p</span>
             </button>
-            <div class="subtitles-popover" id="subtitles-popover" role="dialog" aria-label="Subtitles and Quality Tip">
-              <h4>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e5b84b" stroke-width="2.2">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <line x1="12" y1="16" x2="12" y2="12"></line>
-                  <line x1="12" y1="8" x2="12.01" y2="8"></line>
-                </svg>
-                Subtitles &amp; 1080p Quality
-              </h4>
-              <p>Inside the video player's bottom-right bar, click the <strong>[CC]</strong> icon to toggle soft subtitles on or off.</p>
-              <p>For the sharpest animation, click the gear icon <strong>⚙️ &rarr; Quality &rarr; 1080p HD</strong> once the stream starts playing.</p>
+            <div class="subtitles-popover" id="subtitles-popover">
+              Click <strong>[CC]</strong> inside the player for subtitles, or <strong>⚙️ &rarr; 1080p</strong> for HD quality.
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- RIGHT COLUMN: THE "LOG POSE" EPISODE PLAYLIST SIDEBAR -->
-    <aside class="playlist-sidebar" aria-label="Grand Line Episode Logbook">
+    <!-- RIGHT COLUMN: CLEAN SIDEBAR (EPISODE NAMES ONLY, NO EP 1/2/3 TAGS) -->
+    <aside class="playlist-sidebar" aria-label="Grand Line Logbook">
       <div class="sidebar-header">
         <div class="sidebar-title-wrap">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#e5b84b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e5b84b" stroke-width="2.2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
           </svg>
           <h2>Grand Line Logbook</h2>
         </div>
-        <span class="ep-total-pill" id="sidebar-total-pill">8 Episodes</span>
       </div>
 
-      <!-- Search & Filter Controls -->
       <div class="sidebar-filters">
         <div class="search-box">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
             <circle cx="11" cy="11" r="8"></circle>
             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
           </svg>
@@ -1259,124 +1040,87 @@
             type="search"
             id="search-input"
             class="search-input"
-            placeholder="Search by episode number or title..."
+            placeholder="Search episode name..."
             autocomplete="off"
           />
         </div>
-        <select id="arc-filter-select" class="arc-select" aria-label="Filter episodes by Arc or Watch Status">
-          <option value="ALL">All Arcs &amp; Episodes</option>
-          <option value="UNWATCHED">Unwatched Only</option>
+        <select id="arc-filter-select" class="arc-select" aria-label="Filter episodes">
+          <option value="ALL">All</option>
+          <option value="UNWATCHED">Unwatched</option>
         </select>
       </div>
 
-      <!-- Scrollable Episode List -->
       <div class="episode-list" id="episode-list-container" role="list"></div>
     </aside>
 
   </main>
 
-  <!-- Notification Toast -->
   <div class="toast" id="app-toast" role="status" aria-live="polite"></div>
 
   <script>
     /* ============================================================================
        🏴‍☠️ SARA'S ONE PIECE EPISODE LIST — ADD OR EDIT EPISODES HERE!
-       HOW TO ADD A NEW EPISODE:
-       1. Upload your video to your shared Google Drive folder.
-       2. Right-click the video in Google Drive -> "Copy link".
-       3. Paste the link inside `driveLink: "..."` below (any Drive link format works!).
+       All `driveLink` values are now populated with your exact Google Drive link.
+       You can edit any `title` or replace `driveLink` with individual file links anytime!
        ============================================================================ */
     const EPISODES = [
       {
         id: 1,
-        number: 1,
         title: "I'm Luffy! The Man Who's Gonna Be King of the Pirates!",
         arc: "Romance Dawn Arc",
-        saga: "East Blue Saga",
-        type: "Canon",
-        driveLink: "PASTE_GOOGLE_DRIVE_LINK_HERE",
-        note: "Where the grand adventure begins! Koby meets Monkey D. Luffy."
+        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
       },
       {
         id: 2,
-        number: 2,
         title: "Enter the Great Swordsman! Pirate Hunter Roronoa Zoro!",
         arc: "Romance Dawn Arc",
-        saga: "East Blue Saga",
-        type: "Canon",
-        driveLink: "PASTE_GOOGLE_DRIVE_LINK_HERE",
-        note: "Luffy and Koby arrive at Shells Town and meet the feared three-sword style swordsman."
+        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
       },
       {
         id: 3,
-        number: 3,
         title: "Morgan versus Luffy! Who's the Mysterious Pretty Girl?",
         arc: "Romance Dawn Arc",
-        saga: "East Blue Saga",
-        type: "Canon",
-        driveLink: "PASTE_GOOGLE_DRIVE_LINK_HERE",
-        note: "Luffy and Zoro team up against Axe-Hand Morgan to liberate Shells Town."
+        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
       },
       {
         id: 4,
-        number: 4,
         title: "Luffy's Past! Enter Red-Haired Shanks!",
         arc: "Romance Dawn Arc",
-        saga: "East Blue Saga",
-        type: "Canon",
-        driveLink: "PASTE_GOOGLE_DRIVE_LINK_HERE",
-        note: "The backstory of Luffy's treasured straw hat and the Gum-Gum Fruit."
+        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
       },
       {
         id: 5,
-        number: 5,
         title: "A Terrifying Mysterious Power! Captain Buggy, the Clown Pirate!",
         arc: "Orange Town Arc",
-        saga: "East Blue Saga",
-        type: "Canon",
-        driveLink: "PASTE_GOOGLE_DRIVE_LINK_HERE",
-        note: "Nami crosses paths with Luffy and encounters the flashy Buggy the Clown."
+        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
       },
       {
         id: 6,
-        number: 6,
         title: "Desperate Situation! Beast Tamer Mohji vs. Luffy!",
         arc: "Orange Town Arc",
-        saga: "East Blue Saga",
-        type: "Canon",
-        driveLink: "PASTE_GOOGLE_DRIVE_LINK_HERE",
-        note: "Chouchou guards his beloved pet food shop while Luffy faces Mohji and Richie."
+        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
       },
       {
         id: 7,
-        number: 7,
         title: "Epic Showdown! Swordsman Zoro vs. Acrobat Cabaji!",
         arc: "Orange Town Arc",
-        saga: "East Blue Saga",
-        type: "Canon",
-        driveLink: "PASTE_GOOGLE_DRIVE_LINK_HERE",
-        note: "Despite his injury, Zoro refuses to back down against Buggy's chief of staff."
+        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
       },
       {
         id: 8,
-        number: 8,
         title: "Who is the Victor? Devil Fruit Power Showdown!",
         arc: "Orange Town Arc",
-        saga: "East Blue Saga",
-        type: "Canon",
-        driveLink: "PASTE_GOOGLE_DRIVE_LINK_HERE",
-        note: "Gum-Gum Fruit versus Chop-Chop Fruit in the climax of Orange Town!"
+        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
       }
     ];
 
     /* ============================================================================
-       APPLICATION STATE & LOCALSTORAGE KEYS
+       STATE & LOCALSTORAGE
        ============================================================================ */
     const STORAGE_KEYS = {
-      WATCHED: "sara_op_watched_ids_v1",
-      LAST_EPISODE: "sara_op_last_ep_id_v1",
-      CUSTOM_LINKS: "sara_op_custom_links_v1",
-      SHIELD_ENABLED: "sara_op_shield_v1"
+      WATCHED: "sara_op_watched_v3",
+      LAST_EPISODE: "sara_op_last_ep_v3",
+      SHIELD_ENABLED: "sara_op_shield_v3"
     };
 
     const BERRY_PER_EPISODE = 1500000;
@@ -1384,7 +1128,6 @@
     let state = {
       currentEpisodeId: EPISODES[0].id,
       watchedIds: new Set(),
-      customDriveLinks: {},
       searchQuery: "",
       selectedArcFilter: "ALL",
       theaterMode: false,
@@ -1393,7 +1136,7 @@
     };
 
     /* ============================================================================
-       1. BULLETPROOF GOOGLE DRIVE URL PARSER
+       1. BULLETPROOF GOOGLE DRIVE URL PARSER (SUPPORTS FILES + FOLDERS)
        ============================================================================ */
     function parseDriveUrl(input) {
       if (!input || typeof input !== "string") return null;
@@ -1407,15 +1150,20 @@
         return null;
       }
 
+      // Support Google Drive Folder Links -> Embedded Folder View
+      const folderMatch = trimmed.match(/\/drive\/(?:u\/\d+\/)?folders\/([a-zA-Z0-9_-]{10,})/);
+      if (folderMatch && folderMatch[1]) {
+        return `https://drive.google.com/embeddedfolderview?id=${folderMatch[1]}#list`;
+      }
+
+      // Support Individual Google Drive Video File Links -> /preview Player
       let extractedId = null;
 
-      // Pattern 1: /file/d/{ID}/view or /file/d/{ID}/preview or /file/d/{ID}
       const fileDMatch = trimmed.match(/\/file\/d\/([a-zA-Z0-9_-]{10,})/);
       if (fileDMatch && fileDMatch[1]) {
         extractedId = fileDMatch[1];
       }
 
-      // Pattern 2: ?id={ID} or &id={ID} (e.g. drive.google.com/open?id=...)
       if (!extractedId) {
         const queryIdMatch = trimmed.match(/[?&]id=([a-zA-Z0-9_-]{10,})/);
         if (queryIdMatch && queryIdMatch[1]) {
@@ -1423,7 +1171,6 @@
         }
       }
 
-      // Pattern 3: Raw Google Drive File ID string (alphanumeric, -, _, length >= 15)
       if (!extractedId && /^[a-zA-Z0-9_-]{15,}$/.test(trimmed)) {
         extractedId = trimmed;
       }
@@ -1434,22 +1181,16 @@
 
     /* ============================================================================
        DOM REFERENCES
-       ============================================================================ */
+       ========================================================================== */
     const dom = {
       bountyCounter: document.getElementById("bounty-counter"),
       progressCountText: document.getElementById("progress-count-text"),
-      progressPctText: document.getElementById("progress-pct-text"),
       progressFillBar: document.getElementById("progress-fill-bar"),
-      progressBarAria: document.getElementById("progress-bar-aria"),
       btnResumeLast: document.getElementById("btn-resume-last"),
-      resumeBtnLabel: document.getElementById("resume-btn-label"),
 
       bannerArcBadge: document.getElementById("banner-arc-badge"),
-      bannerEpBadge: document.getElementById("banner-ep-badge"),
-      bannerTypeBadge: document.getElementById("banner-type-badge"),
-      bannerStatusBadge: document.getElementById("banner-status-badge"),
       bannerEpTitle: document.getElementById("banner-ep-title"),
-      bannerEpNote: document.getElementById("banner-ep-note"),
+      bannerStatusBadge: document.getElementById("banner-status-badge"),
 
       playerViewport: document.getElementById("player-viewport"),
       loadingOverlay: document.getElementById("player-loading-overlay"),
@@ -1466,7 +1207,6 @@
       btnSubtitlesTip: document.getElementById("btn-subtitles-tip"),
       subtitlesPopover: document.getElementById("subtitles-popover"),
 
-      sidebarTotalPill: document.getElementById("sidebar-total-pill"),
       searchInput: document.getElementById("search-input"),
       arcFilterSelect: document.getElementById("arc-filter-select"),
       episodeListContainer: document.getElementById("episode-list-container"),
@@ -1474,102 +1214,65 @@
     };
 
     /* ============================================================================
-       LOCAL STORAGE PERSISTENCE
+       STORAGE & HELPERS
        ============================================================================ */
     function loadSavedState() {
       try {
         const rawWatched = localStorage.getItem(STORAGE_KEYS.WATCHED);
         if (rawWatched) {
           const parsed = JSON.parse(rawWatched);
-          if (Array.isArray(parsed)) {
-            state.watchedIds = new Set(parsed);
-          }
+          if (Array.isArray(parsed)) state.watchedIds = new Set(parsed);
         }
 
         const savedEpId = localStorage.getItem(STORAGE_KEYS.LAST_EPISODE);
         if (savedEpId) {
-          const numericId = Number(savedEpId);
-          if (EPISODES.some(ep => ep.id === numericId)) {
-            state.currentEpisodeId = numericId;
-          }
-        }
-
-        const rawCustomLinks = localStorage.getItem(STORAGE_KEYS.CUSTOM_LINKS);
-        if (rawCustomLinks) {
-          const parsedLinks = JSON.parse(rawCustomLinks);
-          if (parsedLinks && typeof parsedLinks === "object") {
-            state.customDriveLinks = parsedLinks;
-          }
+          const numId = Number(savedEpId);
+          if (EPISODES.some(e => e.id === numId)) state.currentEpisodeId = numId;
         }
 
         const savedShield = localStorage.getItem(STORAGE_KEYS.SHIELD_ENABLED);
-        if (savedShield !== null) {
-          state.shieldEnabled = savedShield === "true";
-        }
-      } catch (err) {
-        console.warn("LocalStorage unavailable or restricted:", err);
-      }
+        if (savedShield !== null) state.shieldEnabled = savedShield === "true";
+      } catch (e) {}
     }
 
     function saveWatchedState() {
       try {
         localStorage.setItem(STORAGE_KEYS.WATCHED, JSON.stringify(Array.from(state.watchedIds)));
-      } catch (err) {}
+      } catch (e) {}
     }
 
-    function saveLastEpisodeState(epId) {
+    function saveLastEpisodeState(id) {
       try {
-        localStorage.setItem(STORAGE_KEYS.LAST_EPISODE, String(epId));
-      } catch (err) {}
+        localStorage.setItem(STORAGE_KEYS.LAST_EPISODE, String(id));
+      } catch (e) {}
     }
 
-    function saveCustomLink(epId, link) {
-      state.customDriveLinks[epId] = link;
-      try {
-        localStorage.setItem(STORAGE_KEYS.CUSTOM_LINKS, JSON.stringify(state.customDriveLinks));
-      } catch (err) {}
-    }
-
-    /* ============================================================================
-       UTILITIES
-       ============================================================================ */
-    function formatEpNumber(num) {
-      return String(num).padStart(2, "0");
-    }
-
-    function formatBerries(amount) {
-      return amount.toLocaleString("en-US");
+    function escapeHtml(str) {
+      const div = document.createElement("div");
+      div.textContent = str || "";
+      return div.innerHTML;
     }
 
     let toastTimer = null;
-    function showToast(message) {
-      dom.appToast.textContent = message;
+    function showToast(msg) {
+      dom.appToast.textContent = msg;
       dom.appToast.classList.add("is-visible");
       if (toastTimer) clearTimeout(toastTimer);
       toastTimer = setTimeout(() => {
         dom.appToast.classList.remove("is-visible");
-      }, 2800);
-    }
-
-    function getEffectiveDriveLink(episode) {
-      if (state.customDriveLinks[episode.id]) {
-        return state.customDriveLinks[episode.id];
-      }
-      return episode.driveLink;
+      }, 2600);
     }
 
     /* ============================================================================
-       MEMORY-SAFE IFRAME LIFECYCLE (ANTI-LAG SWITCHING)
+       MEMORY-SAFE IFRAME LIFECYCLE
        ============================================================================ */
     function destroyActiveIframe() {
       if (state.loadTimeoutId) {
         clearTimeout(state.loadTimeoutId);
         state.loadTimeoutId = null;
       }
-
       const existingIframe = dom.playerViewport.querySelector("iframe");
       if (existingIframe) {
-        // Immediately halt media decoding and release browser RAM
         existingIframe.onload = null;
         existingIframe.src = "about:blank";
         existingIframe.remove();
@@ -1578,27 +1281,23 @@
     }
 
     function mountEpisodePlayer(episode) {
-      // Step A: Flush previous iframe from memory
       destroyActiveIframe();
 
-      const rawInput = getEffectiveDriveLink(episode);
-      const previewUrl = parseDriveUrl(rawInput);
+      const embedUrl = parseDriveUrl(episode.driveLink);
 
-      // If no valid Drive link is configured yet, render themed fallback card
-      if (!previewUrl) {
+      if (!embedUrl) {
         dom.loadingOverlay.classList.remove("is-visible");
         dom.driveCornerShield.classList.add("shield-disabled");
-        renderFallbackCard(episode);
+        const fallback = document.createElement("div");
+        fallback.className = "fallback-card";
+        fallback.innerHTML = `<h3>Log Pose Calibrating — Episode Link Not Added Yet</h3>`;
+        dom.playerViewport.appendChild(fallback);
         return;
       }
 
-      // Sync corner shield visibility
       updateShieldUI();
-
-      // Step B: Display animated SVG Log Pose Compass loading overlay
       dom.loadingOverlay.classList.add("is-visible");
 
-      // Step C: Dynamically create fresh <iframe> with exact required attributes
       const iframe = document.createElement("iframe");
       iframe.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; encrypted-media");
       iframe.setAttribute("allowfullscreen", "true");
@@ -1606,9 +1305,8 @@
       iframe.setAttribute("mozallowfullscreen", "true");
       iframe.setAttribute("referrerpolicy", "no-referrer-when-downgrade");
       iframe.setAttribute("frameborder", "0");
-      iframe.setAttribute("title", `One Piece Episode ${episode.number} - ${episode.title}`);
+      iframe.setAttribute("title", episode.title);
 
-      // Step D: Fade out loading overlay on load + 6-second privacy extension fallback
       const hideSpinner = () => {
         dom.loadingOverlay.classList.remove("is-visible");
         if (state.loadTimeoutId) {
@@ -1620,249 +1318,117 @@
       iframe.addEventListener("load", hideSpinner, { once: true });
       state.loadTimeoutId = setTimeout(hideSpinner, 6000);
 
-      iframe.src = previewUrl;
+      iframe.src = embedUrl;
       dom.playerViewport.appendChild(iframe);
     }
 
-    function renderFallbackCard(episode) {
-      const card = document.createElement("div");
-      card.className = "fallback-card";
-      card.innerHTML = `
-        <div class="fallback-icon" aria-hidden="true">
-          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
-          </svg>
-        </div>
-        <h3>Log Pose Calibrating — Episode Link Not Added Yet</h3>
-        <p>
-          Episode ${formatEpNumber(episode.number)} (<strong>${escapeHtml(episode.title)}</strong>) is ready in your logbook!
-          Paste a Google Drive share link below to watch right now, or add it permanently inside <code>EPISODES</code> in <code>index.html</code>.
-        </p>
-        <div class="fallback-input-row">
-          <input
-            type="text"
-            class="fallback-input"
-            id="quick-drive-input"
-            placeholder="Paste Google Drive link or File ID here..."
-            aria-label="Paste Google Drive link for Episode ${episode.number}"
-          />
-          <button type="button" class="btn btn-next" id="btn-save-quick-link">Load Stream</button>
-        </div>
-        <div class="fallback-actions">
-          <button type="button" class="btn" id="btn-copy-howto">📋 Copy Setup Guide</button>
-        </div>
-      `;
-
-      dom.playerViewport.appendChild(card);
-
-      const quickInput = document.getElementById("quick-drive-input");
-      const btnSaveQuick = document.getElementById("btn-save-quick-link");
-      const btnCopyHowto = document.getElementById("btn-copy-howto");
-
-      const handleQuickLoad = () => {
-        const val = quickInput.value.trim();
-        const parsed = parseDriveUrl(val);
-        if (!parsed) {
-          showToast("Please paste a valid Google Drive share link or File ID.");
-          return;
-        }
-        saveCustomLink(episode.id, val);
-        showToast(`Stream linked for Episode ${formatEpNumber(episode.number)}!`);
-        mountEpisodePlayer(episode);
-      };
-
-      btnSaveQuick.addEventListener("click", handleQuickLoad);
-      quickInput.addEventListener("keydown", e => {
-        if (e.key === "Enter") handleQuickLoad();
-      });
-
-      btnCopyHowto.addEventListener("click", () => {
-        const guide = `How to add Episode ${episode.number} to Sara's One Piece Journey:\n1. Open index.html in any text editor.\n2. Find Episode ${episode.number} inside const EPISODES.\n3. Replace "PASTE_GOOGLE_DRIVE_LINK_HERE" with your Google Drive video share link.`;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(guide).then(() => {
-            showToast("Setup instructions copied to clipboard!");
-          });
-        } else {
-          showToast("Open index.html and paste your Drive link into const EPISODES!");
-        }
-      });
-    }
-
-    function escapeHtml(str) {
-      const div = document.createElement("div");
-      div.textContent = str;
-      return div.innerHTML;
-    }
-
     /* ============================================================================
-       UI RENDERING & SYNCHRONIZATION
+       UI RENDERING
        ============================================================================ */
-    function populateArcFilterDropdown() {
-      const uniqueArcs = Array.from(new Set(EPISODES.map(ep => ep.arc)));
-      uniqueArcs.forEach(arcName => {
+    function populateArcDropdown() {
+      const uniqueArcs = Array.from(new Set(EPISODES.map(e => e.arc).filter(Boolean)));
+      uniqueArcs.forEach(arc => {
         const opt = document.createElement("option");
-        opt.value = arcName;
-        opt.textContent = `Arc: ${arcName}`;
+        opt.value = arc;
+        opt.textContent = arc;
         dom.arcFilterSelect.appendChild(opt);
       });
-      dom.sidebarTotalPill.textContent = `${EPISODES.length} Episodes`;
     }
 
-    function updateVoyageProgressUI() {
+    function updateHudUI() {
       const total = EPISODES.length;
       const watchedCount = EPISODES.filter(ep => state.watchedIds.has(ep.id)).length;
       const pct = total > 0 ? Math.round((watchedCount / total) * 100) : 0;
-      const totalBounty = watchedCount * BERRY_PER_EPISODE;
+      const bounty = watchedCount * BERRY_PER_EPISODE;
 
-      dom.bountyCounter.textContent = formatBerries(totalBounty);
-      dom.progressCountText.textContent = `${watchedCount} / ${total} Episodes Completed`;
-      dom.progressPctText.textContent = `${pct}%`;
+      dom.bountyCounter.textContent = bounty.toLocaleString("en-US");
+      dom.progressCountText.textContent = `${watchedCount} / ${total}`;
       dom.progressFillBar.style.width = `${pct}%`;
-      dom.progressBarAria.setAttribute("aria-valuenow", String(pct));
-
-      const currentEp = EPISODES.find(e => e.id === state.currentEpisodeId) || EPISODES[0];
-      dom.resumeBtnLabel.textContent = `Resume Ep ${formatEpNumber(currentEp.number)}`;
     }
 
-    function updateStageBannerAndControls(episode) {
-      const epIndex = EPISODES.findIndex(e => e.id === episode.id);
+    function updateBannerAndControls(episode) {
+      const idx = EPISODES.findIndex(e => e.id === episode.id);
       const isWatched = state.watchedIds.has(episode.id);
 
-      // Top Banner Badges & Titles
-      dom.bannerArcBadge.textContent = `${episode.saga} • ${episode.arc}`.toUpperCase();
-      dom.bannerEpBadge.textContent = `EPISODE ${formatEpNumber(episode.number)}`;
-
-      dom.bannerTypeBadge.textContent = episode.type.toUpperCase();
-      dom.bannerTypeBadge.className = `badge ${
-        episode.type.toLowerCase() === "filler" ? "badge-type-filler" : "badge-type-canon"
-      }`;
+      dom.bannerArcBadge.textContent = (episode.arc || "GRAND LINE").toUpperCase();
+      dom.bannerEpTitle.textContent = episode.title;
 
       if (isWatched) {
         dom.bannerStatusBadge.textContent = "✔ COMPLETED";
-        dom.bannerStatusBadge.className = "badge badge-status-completed";
-      } else {
-        dom.bannerStatusBadge.textContent = "⏳ CURRENT VOYAGE";
-        dom.bannerStatusBadge.className = "badge badge-status-current";
-      }
-
-      dom.bannerEpTitle.textContent = episode.title;
-      dom.bannerEpNote.textContent = episode.note || "";
-
-      // Previous / Next Episode Buttons
-      dom.btnPrevEp.disabled = epIndex <= 0;
-      dom.btnNextEp.disabled = epIndex >= EPISODES.length - 1;
-
-      // Watched Toggle Button
-      if (isWatched) {
+        dom.bannerStatusBadge.className = "status-gem is-completed";
         dom.btnMarkWatched.classList.add("is-watched");
-        dom.watchedBtnText.textContent = "Watched ✔";
+        dom.watchedBtnText.textContent = "Completed ✔";
       } else {
+        dom.bannerStatusBadge.textContent = "⏳ VOYAGE";
+        dom.bannerStatusBadge.className = "status-gem is-voyage";
         dom.btnMarkWatched.classList.remove("is-watched");
-        dom.watchedBtnText.textContent = "Mark as Watched";
+        dom.watchedBtnText.textContent = "Watched";
       }
+
+      dom.btnPrevEp.disabled = idx <= 0;
+      dom.btnNextEp.disabled = idx >= EPISODES.length - 1;
     }
 
     function updateShieldUI() {
       const currentEp = EPISODES.find(e => e.id === state.currentEpisodeId) || EPISODES[0];
-      const hasValidStream = Boolean(parseDriveUrl(getEffectiveDriveLink(currentEp)));
+      const embedUrl = parseDriveUrl(currentEp.driveLink);
+      // Only cover the top-right corner when playing a direct /preview video
+      const isDirectVideo = embedUrl && embedUrl.includes("/preview");
 
-      if (state.shieldEnabled && hasValidStream) {
+      if (state.shieldEnabled && isDirectVideo) {
         dom.driveCornerShield.classList.remove("shield-disabled");
       } else {
         dom.driveCornerShield.classList.add("shield-disabled");
       }
 
-      dom.shieldBtnText.textContent = state.shieldEnabled
-        ? "Pop-out Shield: ON"
-        : "Pop-out Shield: OFF";
+      dom.shieldBtnText.textContent = state.shieldEnabled ? "Shield: ON" : "Shield: OFF";
     }
 
     function renderPlaylistSidebar(scrollToActive = false) {
-      const query = state.searchQuery.trim().toLowerCase();
-      const arcFilter = state.selectedArcFilter;
-
-      const filtered = EPISODES.filter(ep => {
-        const matchesSearch =
-          !query ||
-          String(ep.number).includes(query) ||
-          formatEpNumber(ep.number).includes(query) ||
-          ep.title.toLowerCase().includes(query) ||
-          ep.arc.toLowerCase().includes(query);
-
-        if (!matchesSearch) return false;
-
-        if (arcFilter === "UNWATCHED") {
-          return !state.watchedIds.has(ep.id);
-        }
-        if (arcFilter !== "ALL") {
-          return ep.arc === arcFilter;
-        }
-        return true;
-      });
+      const q = state.searchQuery.trim().toLowerCase();
+      const filter = state.selectedArcFilter;
 
       dom.episodeListContainer.innerHTML = "";
-
-      if (filtered.length === 0) {
-        const empty = document.createElement("div");
-        empty.className = "empty-filter-state";
-        empty.textContent = "No episodes match your current search or Log Pose filter.";
-        dom.episodeListContainer.appendChild(empty);
-        return;
-      }
-
       let activeCardEl = null;
 
-      filtered.forEach(ep => {
-        const isActive = ep.id === state.currentEpisodeId;
+      EPISODES.forEach(ep => {
         const isWatched = state.watchedIds.has(ep.id);
-        const isFiller = ep.type.toLowerCase() === "filler";
+        const matchesSearch = !q || ep.title.toLowerCase().includes(q);
+        if (!matchesSearch) return;
 
+        if (filter === "UNWATCHED" && isWatched) return;
+        if (filter !== "ALL" && filter !== "UNWATCHED" && ep.arc !== filter) return;
+
+        const isActive = ep.id === state.currentEpisodeId;
         const card = document.createElement("div");
         card.className = `ep-card${isActive ? " is-active" : ""}`;
         card.setAttribute("role", "listitem");
         card.setAttribute("tabindex", "0");
 
+        // Clean sidebar item: ONLY the episode name + watched toggle button
         card.innerHTML = `
-          <div class="ep-card-left">
-            <div class="ep-card-top-row">
-              <span class="ep-num-pill">EP ${formatEpNumber(ep.number)}</span>
-              <span class="ep-type-mini ${isFiller ? "filler" : "canon"}">${escapeHtml(ep.type)}</span>
-              ${
-                isActive
-                  ? `<span class="now-playing-tag"><span class="pulse-dot"></span>NOW PLAYING</span>`
-                  : ""
-              }
-            </div>
-            <div class="ep-card-title">${escapeHtml(ep.title)}</div>
-            <div class="ep-card-meta">
-              <span>${escapeHtml(ep.arc)}</span>
-            </div>
+          <div class="ep-card-main">
+            <span class="compass-dot"></span>
+            <span class="ep-name-text">${escapeHtml(ep.title)}</span>
           </div>
           <button
             type="button"
-            class="ep-watch-check${isWatched ? " is-watched" : ""}"
-            title="${isWatched ? "Mark as unwatched" : "Mark as watched"}"
-            aria-label="${isWatched ? "Mark Episode " + ep.number + " as unwatched" : "Mark Episode " + ep.number + " as watched"}"
+            class="ep-watch-btn${isWatched ? " is-watched" : ""}"
+            title="${isWatched ? "Mark unwatched" : "Mark watched"}"
+            aria-label="Toggle watched status for ${escapeHtml(ep.title)}"
           >
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
               <polyline points="20 6 9 17 4 12"></polyline>
             </svg>
           </button>
         `;
 
-        // Clicking the checkmark toggles watched status directly without switching video
-        const watchBtn = card.querySelector(".ep-watch-check");
-        watchBtn.addEventListener("click", e => {
+        card.querySelector(".ep-watch-btn").addEventListener("click", e => {
           e.stopPropagation();
           toggleEpisodeWatched(ep.id);
         });
 
-        // Clicking the card selects & plays the episode
-        card.addEventListener("click", () => {
-          selectEpisode(ep.id, true);
-        });
-
+        card.addEventListener("click", () => selectEpisode(ep.id, true));
         card.addEventListener("keydown", e => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
@@ -1882,51 +1448,41 @@
     }
 
     /* ============================================================================
-       CORE USER ACTIONS
+       USER ACTIONS & EVENTS
        ============================================================================ */
     function selectEpisode(episodeId, scrollSidebar = true) {
-      const targetEp = EPISODES.find(ep => ep.id === episodeId);
-      if (!targetEp) return;
-
+      const targetEp = EPISODES.find(ep => ep.id === episodeId) || EPISODES[0];
       state.currentEpisodeId = targetEp.id;
       saveLastEpisodeState(targetEp.id);
 
-      updateStageBannerAndControls(targetEp);
-      updateVoyageProgressUI();
+      updateBannerAndControls(targetEp);
+      updateHudUI();
       renderPlaylistSidebar(scrollSidebar);
       mountEpisodePlayer(targetEp);
     }
 
     function toggleEpisodeWatched(episodeId) {
-      const targetEp = EPISODES.find(ep => ep.id === episodeId);
-      if (!targetEp) return;
-
       if (state.watchedIds.has(episodeId)) {
         state.watchedIds.delete(episodeId);
-        showToast(`Episode ${formatEpNumber(targetEp.number)} unmarked.`);
       } else {
         state.watchedIds.add(episodeId);
-        showToast(`+฿ 1,500,000 Bounty! Episode ${formatEpNumber(targetEp.number)} completed!`);
+        showToast("+฿ 1,500,000 Bounty Added!");
       }
 
       saveWatchedState();
-      updateVoyageProgressUI();
+      updateHudUI();
 
       const currentEp = EPISODES.find(e => e.id === state.currentEpisodeId);
-      if (currentEp) updateStageBannerAndControls(currentEp);
+      if (currentEp) updateBannerAndControls(currentEp);
       renderPlaylistSidebar(false);
     }
 
     function bindEvents() {
-      // Previous Episode
       dom.btnPrevEp.addEventListener("click", () => {
         const idx = EPISODES.findIndex(e => e.id === state.currentEpisodeId);
-        if (idx > 0) {
-          selectEpisode(EPISODES[idx - 1].id, true);
-        }
+        if (idx > 0) selectEpisode(EPISODES[idx - 1].id, true);
       });
 
-      // Next Episode
       dom.btnNextEp.addEventListener("click", () => {
         const idx = EPISODES.findIndex(e => e.id === state.currentEpisodeId);
         if (idx >= 0 && idx < EPISODES.length - 1) {
@@ -1934,77 +1490,55 @@
         }
       });
 
-      // Mark Current Episode as Watched
       dom.btnMarkWatched.addEventListener("click", () => {
         toggleEpisodeWatched(state.currentEpisodeId);
       });
 
-      // Theater Mode ("Lights Off")
       dom.btnTheaterMode.addEventListener("click", () => {
         state.theaterMode = !state.theaterMode;
         document.body.classList.toggle("theater-mode", state.theaterMode);
         dom.btnTheaterMode.classList.toggle("is-active", state.theaterMode);
-        dom.theaterBtnText.textContent = state.theaterMode
-          ? "Exit Theater"
-          : "Theater Mode";
+        dom.theaterBtnText.textContent = state.theaterMode ? "Lights On" : "Lights Off";
       });
 
-      // Toggle Google Drive Pop-Out Shield
       dom.btnToggleShield.addEventListener("click", () => {
         state.shieldEnabled = !state.shieldEnabled;
         try {
           localStorage.setItem(STORAGE_KEYS.SHIELD_ENABLED, String(state.shieldEnabled));
-        } catch (err) {}
+        } catch (e) {}
         updateShieldUI();
-        showToast(
-          state.shieldEnabled
-            ? "Corner Pop-out Shield enabled."
-            : "Corner Pop-out Shield unlocked."
-        );
       });
 
-      // Subtitles Tip Popover
       dom.btnSubtitlesTip.addEventListener("click", e => {
         e.stopPropagation();
-        const isOpen = dom.subtitlesPopover.classList.toggle("is-open");
-        dom.btnSubtitlesTip.setAttribute("aria-expanded", String(isOpen));
+        dom.subtitlesPopover.classList.toggle("is-open");
       });
 
       document.addEventListener("click", e => {
         if (!dom.subtitlesPopover.contains(e.target) && e.target !== dom.btnSubtitlesTip) {
           dom.subtitlesPopover.classList.remove("is-open");
-          dom.btnSubtitlesTip.setAttribute("aria-expanded", "false");
         }
       });
 
-      // Resume Last Watched Button
       dom.btnResumeLast.addEventListener("click", () => {
         selectEpisode(state.currentEpisodeId, true);
-        document.querySelector(".player-frame-shell").scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
+        document.querySelector(".player-frame-shell").scrollIntoView({ behavior: "smooth", block: "center" });
       });
 
-      // Instant Search Input
       dom.searchInput.addEventListener("input", e => {
         state.searchQuery = e.target.value;
         renderPlaylistSidebar(false);
       });
 
-      // Arc / Status Dropdown Filter
       dom.arcFilterSelect.addEventListener("change", e => {
         state.selectedArcFilter = e.target.value;
         renderPlaylistSidebar(false);
       });
     }
 
-    /* ============================================================================
-       INITIALIZATION
-       ============================================================================ */
     function initApp() {
       loadSavedState();
-      populateArcFilterDropdown();
+      populateArcDropdown();
       bindEvents();
       selectEpisode(state.currentEpisodeId, true);
     }
