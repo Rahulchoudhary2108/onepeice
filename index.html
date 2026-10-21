@@ -6,12 +6,6 @@
   <meta name="theme-color" content="#070b14" />
   <title>Sara's One Piece Journey</title>
 
-  <!-- DNS PRE-WARMING -->
-  <link rel="preconnect" href="https://drive.google.com" crossorigin>
-  <link rel="preconnect" href="https://www.google.com" crossorigin>
-  <link rel="dns-prefetch" href="https://drive.google.com">
-  <link rel="dns-prefetch" href="https://lh3.googleusercontent.com">
-
   <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -59,7 +53,6 @@
       font-family: var(--font-body);
       min-height: 100vh;
       overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
     }
 
     .nautical-watermark {
@@ -77,7 +70,6 @@
       background-color: #020409;
       background-image: none;
     }
-
     body.theater-mode .top-header {
       opacity: 0.2;
       transition: opacity 0.25s ease;
@@ -93,7 +85,6 @@
       z-index: 40;
       background: var(--bg-glass);
       backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-subtle);
       box-shadow: 0 10px 34px rgba(0, 0, 0, 0.5);
     }
@@ -243,7 +234,6 @@
       text-decoration: none;
       white-space: nowrap;
     }
-
     .btn-header:hover {
       background: rgba(229, 184, 75, 0.2);
       border-color: var(--gold-primary);
@@ -266,7 +256,6 @@
       grid-template-columns: 1fr;
       max-width: 1360px;
     }
-
     body.theater-mode .playlist-sidebar {
       display: none;
     }
@@ -278,7 +267,6 @@
       min-width: 0;
     }
 
-    /* EPISODE TITLE BANNER */
     .episode-banner {
       background: linear-gradient(90deg, rgba(13, 21, 38, 0.95) 0%, rgba(21, 34, 56, 0.85) 100%);
       border: 1px solid var(--border-subtle);
@@ -292,7 +280,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .episode-banner::before {
       content: "";
       position: absolute;
@@ -343,20 +330,18 @@
       border-radius: 999px;
       flex-shrink: 0;
     }
-
     .status-gem.is-completed {
       background: rgba(45, 212, 191, 0.14);
       color: var(--sea-teal);
       border: 1px solid rgba(45, 212, 191, 0.4);
     }
-
     .status-gem.is-voyage {
       background: rgba(229, 184, 75, 0.12);
       color: var(--gold-light);
       border: 1px solid rgba(229, 184, 75, 0.3);
     }
 
-    /* VIDEO CONTAINER */
+    /* PLAYER CONTAINER */
     .player-frame-shell {
       position: relative;
       width: 100%;
@@ -387,56 +372,28 @@
       height: 100%;
       position: relative;
       z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    #player-viewport iframe,
     #player-viewport video {
       width: 100%;
       height: 100%;
-      border: 0;
-      display: block;
+      object-fit: contain;
       background: #000;
     }
 
-    .loading-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 4;
-      background: radial-gradient(circle at center, #101b30 0%, #050811 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 0.85rem;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.35s ease;
+    .player-notice {
+      text-align: center;
+      padding: 1.5rem;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      max-width: 400px;
     }
-
-    .loading-overlay.is-visible {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .compass-spinner {
-      width: 74px;
-      height: 74px;
-      animation: logPoseNeedle 2.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
-    }
-
-    @keyframes logPoseNeedle {
-      0% { transform: rotate(0deg); }
-      35% { transform: rotate(195deg); }
-      65% { transform: rotate(155deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    .loading-title {
-      font-family: var(--font-heading);
-      color: var(--gold-light);
-      font-size: 0.95rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
+    .player-notice a {
+      color: var(--gold-primary);
+      text-decoration: underline;
     }
 
     /* CONTROL DECK */
@@ -476,29 +433,24 @@
       transition: all 0.16s ease;
       user-select: none;
     }
-
     .btn:hover:not(:disabled) {
       background: #1d2f4d;
       border-color: var(--gold-primary);
     }
-
     .btn:disabled {
       opacity: 0.35;
       cursor: not-allowed;
     }
-
     .btn-crimson {
       background: linear-gradient(135deg, var(--crimson-accent), #a82022);
       border-color: rgba(250, 225, 156, 0.38);
       color: #fff;
     }
-
     .btn-watched.is-watched {
       background: rgba(45, 212, 191, 0.16);
       border-color: var(--sea-teal);
       color: var(--sea-teal);
     }
-
     .btn-theater.is-active {
       background: rgba(229, 184, 75, 0.22);
       border-color: var(--gold-primary);
@@ -523,13 +475,6 @@
       align-items: center;
       justify-content: space-between;
     }
-
-    .sidebar-title-wrap {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
     .sidebar-title-wrap h2 {
       font-family: var(--font-heading);
       font-size: 1rem;
@@ -550,14 +495,12 @@
       display: flex;
       align-items: center;
     }
-
     .search-box svg {
       position: absolute;
       left: 0.65rem;
       color: var(--text-secondary);
       pointer-events: none;
     }
-
     .search-input {
       width: 100%;
       background: var(--bg-surface);
@@ -567,13 +510,10 @@
       font-size: 0.8rem;
       padding: 0.48rem 0.65rem 0.48rem 2rem;
     }
-
-    .search-input:focus,
-    .filter-select:focus {
+    .search-input:focus, .filter-select:focus {
       outline: none;
       border-color: var(--gold-primary);
     }
-
     .filter-select {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
@@ -592,12 +532,8 @@
       flex-direction: column;
       gap: 0.45rem;
     }
-
     .episode-list::-webkit-scrollbar {
       width: 6px;
-    }
-    .episode-list::-webkit-scrollbar-track {
-      background: var(--bg-abyss);
     }
     .episode-list::-webkit-scrollbar-thumb {
       background: rgba(229, 184, 75, 0.32);
@@ -616,12 +552,10 @@
       cursor: pointer;
       transition: all 0.16s ease;
     }
-
     .ep-card:hover {
       background: var(--bg-surface);
       border-color: var(--border-subtle);
     }
-
     .ep-card.is-active {
       background: linear-gradient(90deg, rgba(229, 184, 75, 0.16), rgba(21, 34, 56, 0.9));
       border-color: var(--gold-primary);
@@ -635,7 +569,6 @@
       min-width: 0;
       flex: 1;
     }
-
     .compass-dot {
       width: 8px;
       height: 8px;
@@ -643,12 +576,10 @@
       background: rgba(229, 184, 75, 0.35);
       flex-shrink: 0;
     }
-
     .ep-card.is-active .compass-dot {
       background: var(--gold-primary);
       box-shadow: 0 0 8px var(--gold-primary);
     }
-
     .ep-name-text {
       font-size: 0.86rem;
       font-weight: 600;
@@ -672,12 +603,10 @@
       flex-shrink: 0;
       transition: all 0.15s ease;
     }
-
     .ep-watch-btn:hover {
       border-color: var(--sea-teal);
       color: var(--sea-teal);
     }
-
     .ep-watch-btn.is-watched {
       background: rgba(45, 212, 191, 0.18);
       border-color: var(--sea-teal);
@@ -783,18 +712,6 @@
         <span class="brass-corner tl"></span>
         <span class="brass-corner bl"></span>
         <span class="brass-corner br"></span>
-
-        <div class="loading-overlay" id="player-loading-overlay" aria-hidden="true">
-          <svg class="compass-spinner" viewBox="0 0 64 64" fill="none">
-            <circle cx="32" cy="32" r="28" stroke="#e5b84b" stroke-width="2" opacity="0.35"/>
-            <circle cx="32" cy="32" r="21" stroke="#fae19c" stroke-width="1.5" stroke-dasharray="4 4"/>
-            <polygon points="32,8 37,30 32,26 27,30" fill="#d9383a"/>
-            <polygon points="32,56 37,34 32,38 27,34" fill="#e5b84b"/>
-            <circle cx="32" cy="32" r="4" fill="#fae19c"/>
-          </svg>
-          <div class="loading-title">Loading Stream...</div>
-        </div>
-
         <div id="player-viewport"></div>
       </div>
 
@@ -840,20 +757,21 @@
 
   <script>
     /* ============================================================================
-       EPISODE LIST — HEADINGS DRAWN DIRECTLY FROM VIDEO FILE NAMES
+       EPISODE LIST 
+       To avoid Google Drive's "No preview available" screen, replace `directVideoUrl` 
+       with a direct hosting link (or an mp4 link) once your file is ready.
        ============================================================================ */
     const EPISODES = [
       {
         id: 1,
         title: "Ark 1.mp4",
-        driveLink: "https://drive.google.com/file/d/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL/view?usp=sharing" 
-        // Note: Replace the file ID above with your specific video file's share link once Google Drive finishes processing it.
+        directVideoUrl: "" // Put direct .mp4 or direct video stream URL here
       }
     ];
 
     const STORAGE_KEYS = {
-      WATCHED: "sara_op_watched_v4",
-      LAST_EPISODE: "sara_op_last_ep_v4"
+      WATCHED: "sara_op_watched_v5",
+      LAST_EPISODE: "sara_op_last_ep_v5"
     };
 
     const BERRY_PER_EPISODE = 1500000;
@@ -863,18 +781,8 @@
       watchedIds: new Set(),
       searchQuery: "",
       filterStatus: "ALL",
-      theaterMode: false,
-      loadTimeoutId: null
+      theaterMode: false
     };
-
-    function parseDriveStreamUrl(input) {
-      if (!input) return null;
-      const fileIdMatch = input.match(/\/file\/d\/([a-zA-Z0-9_-]{10,})/) || input.match(/[?&]id=([a-zA-Z0-9_-]{10,})/);
-      const fileId = fileIdMatch ? fileIdMatch[1] : (/^[a-zA-Z0-9_-]{15,}$/.test(input.trim()) ? input.trim() : null);
-      if (!fileId) return null;
-      // Uses Google Drive's embedded preview stream endpoint so it plays right in the panel
-      return `https://drive.google.com/file/d/${fileId}/preview`;
-    }
 
     const dom = {
       bountyCounter: document.getElementById("bounty-counter"),
@@ -885,7 +793,6 @@
       bannerEpTitle: document.getElementById("banner-ep-title"),
       bannerStatusBadge: document.getElementById("banner-status-badge"),
       playerViewport: document.getElementById("player-viewport"),
-      loadingOverlay: document.getElementById("player-loading-overlay"),
       btnPrevEp: document.getElementById("btn-prev-ep"),
       btnNextEp: document.getElementById("btn-next-ep"),
       btnMarkWatched: document.getElementById("btn-mark-watched"),
@@ -916,27 +823,24 @@
     }
 
     function mountPlayer(episode) {
-      if (state.loadTimeoutId) clearTimeout(state.loadTimeoutId);
       dom.playerViewport.innerHTML = "";
 
-      const streamUrl = parseDriveStreamUrl(episode.driveLink);
-      if (!streamUrl) {
-        dom.loadingOverlay.classList.remove("is-visible");
-        dom.playerViewport.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#fae19c;font-family:Cinzel;">Please provide a direct file link to play in panel</div>`;
+      if (!episode.directVideoUrl) {
+        dom.playerViewport.innerHTML = `
+          <div class="player-notice">
+            <p>Google Drive blocks direct browser playback until the file is fully processed or converted.</p>
+            <br>
+            <a href="https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing" target="_blank">Open Drive Folder in New Tab</a>
+          </div>
+        `;
         return;
       }
 
-      dom.loadingOverlay.classList.add("is-visible");
-      const iframe = document.createElement("iframe");
-      iframe.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; encrypted-media");
-      iframe.setAttribute("allowfullscreen", "true");
-      iframe.setAttribute("src", streamUrl);
-
-      const hideSpinner = () => dom.loadingOverlay.classList.remove("is-visible");
-      iframe.addEventListener("load", hideSpinner, { once: true });
-      state.loadTimeoutId = setTimeout(hideSpinner, 5000);
-
-      dom.playerViewport.appendChild(iframe);
+      const video = document.createElement("video");
+      video.controls = true;
+      video.autoplay = false;
+      video.src = episode.directVideoUrl;
+      dom.playerViewport.appendChild(video);
     }
 
     function updateUI() {
@@ -952,7 +856,7 @@
       const ep = EPISODES[idx] || EPISODES[0];
 
       dom.bannerEpBadge.textContent = `#${String(idx + 1).padStart(2, "0")}`;
-      dom.bannerEpTitle.textContent = ep.title; // Drawn directly from video file name
+      dom.bannerEpTitle.textContent = ep.title;
 
       const isWatched = state.watchedIds.has(ep.id);
       if (isWatched) {
@@ -975,7 +879,7 @@
       dom.episodeListContainer.innerHTML = "";
       const q = state.searchQuery.toLowerCase();
 
-      EPISODES.forEach((ep, idx) => {
+      EPISODES.forEach((ep) => {
         if (q && !ep.title.toLowerCase().includes(q)) return;
         const isWatched = state.watchedIds.has(ep.id);
         if (state.filterStatus === "UNWATCHED" && isWatched) return;
@@ -1019,7 +923,6 @@
       });
     }
 
-    // Controls bindings
     dom.btnPrevEp.addEventListener("click", () => {
       const idx = EPISODES.findIndex(e => e.id === state.currentEpisodeId);
       if (idx > 0) {
@@ -1076,7 +979,6 @@
       mountPlayer(ep);
     });
 
-    // Boot
     loadSavedState();
     updateUI();
     renderSidebar();
