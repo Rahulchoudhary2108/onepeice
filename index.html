@@ -6,12 +6,11 @@
   <meta name="theme-color" content="#070b14" />
   <title>Sara's One Piece Journey</title>
 
-  <!-- 1. DNS & SOCKET PRE-WARMING FOR GOOGLE DRIVE STREAMING -->
+  <!-- DNS PRE-WARMING -->
   <link rel="preconnect" href="https://drive.google.com" crossorigin>
   <link rel="preconnect" href="https://www.google.com" crossorigin>
   <link rel="dns-prefetch" href="https://drive.google.com">
   <link rel="dns-prefetch" href="https://lh3.googleusercontent.com">
-  <link rel="dns-prefetch" href="https://docs.google.com">
 
   <!-- GOOGLE FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,14 +18,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ==========================================================================
-       2. VISUAL DESIGN SYSTEM ("GRAND LINE PIRATE LOGBOOK" THEME)
-       ========================================================================== */
     :root {
       --bg-abyss: #070b14;
       --bg-navy: #0d1526;
       --bg-surface: #152238;
-      --bg-glass: rgba(13, 21, 38, 0.85);
+      --bg-glass: rgba(13, 21, 38, 0.86);
       --gold-primary: #e5b84b;
       --gold-light: #fae19c;
       --crimson-accent: #d9383a;
@@ -34,7 +30,7 @@
       --text-primary: #f1f5f9;
       --text-secondary: #94a3b8;
       --border-subtle: rgba(229, 184, 75, 0.22);
-      --shadow-elevation: 0 20px 50px rgba(0, 0, 0, 0.7);
+      --shadow-elevation: 0 20px 50px rgba(0, 0, 0, 0.75);
       --font-heading: 'Cinzel', Georgia, serif;
       --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     }
@@ -53,8 +49,8 @@
     body {
       background-color: var(--bg-abyss);
       background-image:
-        radial-gradient(circle at 14% 12%, rgba(229, 184, 75, 0.09) 0%, transparent 38%),
-        radial-gradient(circle at 86% 84%, rgba(217, 56, 58, 0.07) 0%, transparent 42%),
+        radial-gradient(circle at 12% 15%, rgba(229, 184, 75, 0.09) 0%, transparent 38%),
+        radial-gradient(circle at 88% 82%, rgba(217, 56, 58, 0.07) 0%, transparent 42%),
         linear-gradient(rgba(229, 184, 75, 0.025) 1px, transparent 1px),
         linear-gradient(90deg, rgba(229, 184, 75, 0.025) 1px, transparent 1px);
       background-size: 100% 100%, 100% 100%, 56px 56px, 56px 56px;
@@ -64,24 +60,21 @@
       min-height: 100vh;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
-      transition: background-color 0.3s ease;
     }
 
-    /* Static Nautical Compass Rose Watermark */
     .nautical-watermark {
       position: fixed;
-      right: -110px;
-      bottom: -110px;
-      width: 480px;
-      height: 480px;
+      right: -120px;
+      bottom: -120px;
+      width: 520px;
+      height: 520px;
       opacity: 0.035;
       pointer-events: none;
       z-index: 0;
     }
 
-    /* Theater Mode ("Lights Off") */
     body.theater-mode {
-      background-color: #020408;
+      background-color: #020409;
       background-image: none;
     }
 
@@ -89,23 +82,20 @@
       opacity: 0.2;
       transition: opacity 0.25s ease;
     }
-
     body.theater-mode .top-header:hover {
       opacity: 1;
     }
 
-    /* ==========================================================================
-       STICKY TOP NAVIGATION HEADER
-       ========================================================================== */
+    /* HEADER */
     .top-header {
       position: sticky;
       top: 0;
       z-index: 40;
       background: var(--bg-glass);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--border-subtle);
-      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 10px 34px rgba(0, 0, 0, 0.5);
     }
 
     .header-inner {
@@ -128,15 +118,15 @@
     }
 
     .brand-crest {
-      width: 46px;
-      height: 46px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
       background: radial-gradient(circle at 35% 35%, #1e2f4d, #090f1d);
       border: 1.5px solid var(--gold-primary);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 18px rgba(229, 184, 75, 0.22);
+      box-shadow: 0 0 20px rgba(229, 184, 75, 0.22);
       flex-shrink: 0;
     }
 
@@ -150,34 +140,34 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* Center: Wanted Bounty Plaque + Sailing Ship Progress Wave */
+    /* HUD */
     .grand-line-hud {
       display: flex;
       align-items: center;
-      gap: 1.1rem;
+      gap: 1.15rem;
       background: rgba(7, 11, 20, 0.72);
       border: 1px solid var(--border-subtle);
       border-radius: 999px;
-      padding: 0.4rem 1.1rem 0.4rem 0.55rem;
+      padding: 0.4rem 1.15rem 0.4rem 0.6rem;
       flex: 1;
-      max-width: 540px;
-      min-width: 260px;
+      max-width: 560px;
+      min-width: 270px;
     }
 
     .wanted-plaque {
       display: flex;
       align-items: center;
-      gap: 0.45rem;
+      gap: 0.5rem;
       background: linear-gradient(135deg, rgba(229, 184, 75, 0.2), rgba(229, 184, 75, 0.05));
       border: 1px solid rgba(229, 184, 75, 0.4);
       border-radius: 999px;
-      padding: 0.3rem 0.8rem;
+      padding: 0.32rem 0.8rem;
       flex-shrink: 0;
     }
 
     .wanted-tag {
       font-family: var(--font-heading);
-      font-size: 0.64rem;
+      font-size: 0.65rem;
       font-weight: 800;
       letter-spacing: 0.12em;
       color: var(--gold-primary);
@@ -185,7 +175,7 @@
 
     .bounty-value {
       font-family: var(--font-heading);
-      font-size: 0.95rem;
+      font-size: 0.96rem;
       font-weight: 800;
       color: var(--gold-light);
     }
@@ -199,11 +189,10 @@
 
     .sea-track {
       flex: 1;
-      height: 7px;
-      background: rgba(255, 255, 255, 0.08);
+      height: 8px;
+      background: rgba(255, 255, 255, 0.07);
       border-radius: 999px;
       position: relative;
-      overflow: visible;
     }
 
     .sea-fill {
@@ -211,7 +200,7 @@
       width: 0%;
       background: linear-gradient(90deg, var(--crimson-accent), var(--gold-primary), var(--sea-teal));
       border-radius: 999px;
-      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: width 0.45s ease;
       position: relative;
     }
 
@@ -222,7 +211,7 @@
       transform: translateY(-58%);
       width: 24px;
       height: 24px;
-      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.85));
+      filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.8));
     }
 
     .voyage-count-pill {
@@ -242,12 +231,11 @@
       display: inline-flex;
       align-items: center;
       gap: 0.45rem;
-      background: rgba(21, 34, 56, 0.8);
+      background: rgba(21, 34, 56, 0.75);
       color: var(--gold-light);
       border: 1px solid var(--border-subtle);
       padding: 0.5rem 0.9rem;
       border-radius: 999px;
-      font-family: var(--font-body);
       font-size: 0.78rem;
       font-weight: 600;
       cursor: pointer;
@@ -257,14 +245,11 @@
     }
 
     .btn-header:hover {
-      background: rgba(229, 184, 75, 0.22);
+      background: rgba(229, 184, 75, 0.2);
       border-color: var(--gold-primary);
-      transform: translateY(-1px);
     }
 
-    /* ==========================================================================
-       MAIN 2-COLUMN WORKSPACE
-       ========================================================================== */
+    /* WORKSPACE */
     .workspace {
       position: relative;
       z-index: 1;
@@ -272,7 +257,7 @@
       margin: 0 auto;
       padding: 1.35rem 1.5rem 2rem;
       display: grid;
-      grid-template-columns: 1fr 370px;
+      grid-template-columns: 1fr 380px;
       gap: 1.35rem;
       align-items: start;
     }
@@ -286,9 +271,6 @@
       display: none;
     }
 
-    /* ==========================================================================
-       LEFT COLUMN: THE THEATER STAGE
-       ========================================================================== */
     .theater-stage {
       display: flex;
       flex-direction: column;
@@ -296,7 +278,7 @@
       min-width: 0;
     }
 
-    /* Top Episode Banner (Clean & Visual, Not Text Heavy) */
+    /* EPISODE TITLE BANNER */
     .episode-banner {
       background: linear-gradient(90deg, rgba(13, 21, 38, 0.95) 0%, rgba(21, 34, 56, 0.85) 100%);
       border: 1px solid var(--border-subtle);
@@ -324,25 +306,24 @@
     .banner-left {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.85rem;
       min-width: 0;
     }
 
-    .arc-pill {
+    .ep-crest-pill {
       font-family: var(--font-heading);
-      font-size: 0.7rem;
+      font-size: 0.78rem;
       font-weight: 800;
       color: var(--bg-abyss);
       background: linear-gradient(135deg, var(--gold-light), var(--gold-primary));
-      padding: 0.25rem 0.65rem;
+      padding: 0.3rem 0.7rem;
       border-radius: 6px;
       letter-spacing: 0.06em;
-      text-transform: uppercase;
       flex-shrink: 0;
     }
 
     .banner-title {
-      font-size: clamp(1.1rem, 1.9vw, 1.45rem);
+      font-size: clamp(1.1rem, 2vw, 1.45rem);
       font-weight: 700;
       color: var(--text-primary);
       white-space: nowrap;
@@ -353,18 +334,18 @@
     .status-gem {
       display: inline-flex;
       align-items: center;
-      gap: 0.35rem;
-      font-size: 0.7rem;
+      gap: 0.38rem;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      padding: 0.26rem 0.65rem;
+      padding: 0.28rem 0.7rem;
       border-radius: 999px;
       flex-shrink: 0;
     }
 
     .status-gem.is-completed {
-      background: rgba(45, 212, 191, 0.15);
+      background: rgba(45, 212, 191, 0.14);
       color: var(--sea-teal);
       border: 1px solid rgba(45, 212, 191, 0.4);
     }
@@ -375,7 +356,7 @@
       border: 1px solid rgba(229, 184, 75, 0.3);
     }
 
-    /* 16:9 Video Frame Container */
+    /* VIDEO CONTAINER */
     .player-frame-shell {
       position: relative;
       width: 100%;
@@ -408,40 +389,15 @@
       z-index: 1;
     }
 
-    #player-viewport iframe {
+    #player-viewport iframe,
+    #player-viewport video {
       width: 100%;
       height: 100%;
       border: 0;
       display: block;
-      background: #070b14;
+      background: #000;
     }
 
-    /* Top-Right Pop-Out Corner Shield (52px x 52px) */
-    .drive-popout-shield {
-      width: 52px;
-      height: 52px;
-      position: absolute;
-      top: 0;
-      right: 0;
-      z-index: 5;
-      background: radial-gradient(circle at top right, #152238, rgba(7, 11, 20, 0.92));
-      border-bottom-left-radius: 12px;
-      border-left: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-primary);
-      cursor: default;
-      user-select: none;
-    }
-
-    .drive-popout-shield.shield-disabled {
-      display: none;
-      pointer-events: none;
-    }
-
-    /* Animated Log Pose Compass Loading Overlay */
     .loading-overlay {
       position: absolute;
       inset: 0;
@@ -463,12 +419,12 @@
     }
 
     .compass-spinner {
-      width: 72px;
-      height: 72px;
-      animation: logPoseSpin 2.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+      width: 74px;
+      height: 74px;
+      animation: logPoseNeedle 2.4s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
     }
 
-    @keyframes logPoseSpin {
+    @keyframes logPoseNeedle {
       0% { transform: rotate(0deg); }
       35% { transform: rotate(195deg); }
       65% { transform: rotate(155deg); }
@@ -478,32 +434,12 @@
     .loading-title {
       font-family: var(--font-heading);
       color: var(--gold-light);
-      font-size: 0.92rem;
+      font-size: 0.95rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
     }
 
-    /* Fallback Card */
-    .fallback-card {
-      width: 100%;
-      height: 100%;
-      background: radial-gradient(circle at center, rgba(229, 184, 75, 0.1) 0%, transparent 65%), var(--bg-navy);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 1.75rem;
-      gap: 0.75rem;
-    }
-
-    .fallback-card h3 {
-      font-family: var(--font-heading);
-      color: var(--gold-light);
-      font-size: 1.2rem;
-    }
-
-    /* Control Deck */
+    /* CONTROL DECK */
     .control-deck {
       background: var(--bg-navy);
       border: 1px solid var(--border-subtle);
@@ -529,7 +465,6 @@
       align-items: center;
       justify-content: center;
       gap: 0.42rem;
-      font-family: var(--font-body);
       font-size: 0.8rem;
       font-weight: 600;
       padding: 0.55rem 0.9rem;
@@ -558,16 +493,10 @@
       color: #fff;
     }
 
-    .btn-crimson:hover:not(:disabled) {
-      background: linear-gradient(135deg, #ef4345, #c42729);
-      border-color: var(--gold-light);
-    }
-
     .btn-watched.is-watched {
       background: rgba(45, 212, 191, 0.16);
       border-color: var(--sea-teal);
       color: var(--sea-teal);
-      box-shadow: 0 0 14px rgba(45, 212, 191, 0.2);
     }
 
     .btn-theater.is-active {
@@ -576,38 +505,7 @@
       color: var(--gold-light);
     }
 
-    .popover-wrapper {
-      position: relative;
-    }
-
-    .subtitles-popover {
-      position: absolute;
-      bottom: calc(100% + 10px);
-      right: 0;
-      width: 260px;
-      background: var(--bg-navy);
-      border: 1px solid var(--gold-primary);
-      border-radius: 10px;
-      padding: 0.75rem 0.9rem;
-      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.85);
-      z-index: 30;
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      line-height: 1.45;
-      display: none;
-    }
-
-    .subtitles-popover.is-open {
-      display: block;
-    }
-
-    .subtitles-popover strong {
-      color: var(--gold-light);
-    }
-
-    /* ==========================================================================
-       RIGHT COLUMN: CLEAN "LOG POSE" SIDEBAR (NO SAMPLE EPISODE 1/2/3 CLUTTER)
-       ========================================================================== */
+    /* SIDEBAR */
     .playlist-sidebar {
       background: var(--bg-navy);
       border: 1px solid var(--border-subtle);
@@ -636,7 +534,6 @@
       font-family: var(--font-heading);
       font-size: 1rem;
       color: var(--gold-light);
-      letter-spacing: 0.04em;
     }
 
     .sidebar-filters {
@@ -667,23 +564,21 @@
       border: 1px solid var(--border-subtle);
       border-radius: 7px;
       color: var(--text-primary);
-      font-family: var(--font-body);
       font-size: 0.8rem;
       padding: 0.48rem 0.65rem 0.48rem 2rem;
     }
 
     .search-input:focus,
-    .arc-select:focus {
+    .filter-select:focus {
       outline: none;
       border-color: var(--gold-primary);
     }
 
-    .arc-select {
+    .filter-select {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       border-radius: 7px;
       color: var(--text-primary);
-      font-family: var(--font-body);
       font-size: 0.78rem;
       padding: 0.48rem 0.55rem;
       cursor: pointer;
@@ -709,7 +604,6 @@
       border-radius: 999px;
     }
 
-    /* Clean Episode Card: Displays ONLY Your Exact Episode Name + Watched Check */
     .ep-card {
       display: flex;
       align-items: center;
@@ -720,7 +614,7 @@
       background: rgba(21, 34, 56, 0.5);
       border: 1px solid transparent;
       cursor: pointer;
-      transition: background 0.16s ease, border-color 0.16s ease;
+      transition: all 0.16s ease;
     }
 
     .ep-card:hover {
@@ -759,11 +653,9 @@
       font-size: 0.86rem;
       font-weight: 600;
       color: var(--text-primary);
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
       overflow: hidden;
-      line-height: 1.35;
+      text-overflow: ellipsis;
+      white-space: nowrap;
     }
 
     .ep-watch-btn {
@@ -810,43 +702,19 @@
       pointer-events: none;
       transition: all 0.22s ease;
     }
-
     .toast.is-visible {
       opacity: 1;
       transform: translateY(0);
     }
 
     @media (max-width: 1024px) {
-      .workspace {
-        grid-template-columns: 1fr;
-      }
-      .grand-line-hud {
-        order: 3;
-        max-width: 100%;
-        width: 100%;
-      }
-    }
-
-    @media (max-width: 600px) {
-      .header-inner {
-        padding: 0.7rem 1rem;
-      }
-      .workspace {
-        padding: 1rem;
-      }
-      .control-deck {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .deck-group {
-        justify-content: space-between;
-      }
+      .workspace { grid-template-columns: 1fr; }
+      .grand-line-hud { order: 3; max-width: 100%; width: 100%; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Static Nautical Compass Rose Watermark -->
   <svg class="nautical-watermark" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <circle cx="100" cy="100" r="90" stroke="#e5b84b" stroke-width="1.5" stroke-dasharray="6 4"/>
     <circle cx="100" cy="100" r="70" stroke="#e5b84b" stroke-width="1"/>
@@ -856,9 +724,6 @@
     <polygon points="192,100 112,88 124,100 112,112" fill="#e5b84b"/>
   </svg>
 
-  <!-- ==========================================================================
-       STICKY TOP HEADER
-       ========================================================================== -->
   <header class="top-header">
     <div class="header-inner">
       <a href="#top" class="brand-group">
@@ -873,13 +738,11 @@
         <h1 class="brand-title">Sara's One Piece Journey</h1>
       </a>
 
-      <!-- Wanted Bounty + Sailing Ship Progress Wave -->
       <div class="grand-line-hud" aria-label="Bounty and Voyage Progress">
         <div class="wanted-plaque">
           <span class="wanted-tag">BOUNTY</span>
           <span class="bounty-value">฿ <span id="bounty-counter">0</span></span>
         </div>
-
         <div class="voyage-track-wrap">
           <div class="sea-track">
             <div class="sea-fill" id="progress-fill-bar">
@@ -895,62 +758,32 @@
         </div>
       </div>
 
-      <!-- Right Actions -->
       <div class="header-actions">
-        <a
-          href="https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-header"
-          title="Open your Google Drive folder in a new tab"
-        >
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-          </svg>
+        <a href="https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing" target="_blank" rel="noopener noreferrer" class="btn-header">
           <span>Drive Folder</span>
         </a>
-
         <button type="button" class="btn-header" id="btn-resume-last">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-            <polygon points="5 3 19 12 5 21 5 3"></polygon>
-          </svg>
           <span>Resume</span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- ==========================================================================
-       MAIN 2-COLUMN WORKSPACE
-       ========================================================================== -->
   <main class="workspace" id="top">
-
-    <!-- LEFT COLUMN: THEATER STAGE -->
     <section class="theater-stage">
-
-      <!-- 1. Episode Banner -->
       <div class="episode-banner">
         <div class="banner-left">
-          <span class="arc-pill" id="banner-arc-badge">ROMANCE DAWN ARC</span>
-          <h2 class="banner-title" id="banner-ep-title">I'm Luffy! The Man Who's Gonna Be King of the Pirates!</h2>
+          <span class="ep-crest-pill" id="banner-ep-badge">#01</span>
+          <h2 class="banner-title" id="banner-ep-title">Ark 1.mp4</h2>
         </div>
         <span class="status-gem is-voyage" id="banner-status-badge">⏳ VOYAGE</span>
       </div>
 
-      <!-- 2. 16:9 Video Frame Container -->
       <div class="player-frame-shell">
         <span class="brass-corner tl"></span>
         <span class="brass-corner bl"></span>
         <span class="brass-corner br"></span>
 
-        <!-- Top-Right Pop-Out Corner Shield -->
-        <div class="drive-popout-shield" id="drive-corner-shield" title="Pop-out Shield Active">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-          </svg>
-        </div>
-
-        <!-- Animated Log Pose Compass Loading Overlay -->
         <div class="loading-overlay" id="player-loading-overlay" aria-hidden="true">
           <svg class="compass-spinner" viewBox="0 0 64 64" fill="none">
             <circle cx="32" cy="32" r="28" stroke="#e5b84b" stroke-width="2" opacity="0.35"/>
@@ -959,92 +792,41 @@
             <polygon points="32,56 37,34 32,38 27,34" fill="#e5b84b"/>
             <circle cx="32" cy="32" r="4" fill="#fae19c"/>
           </svg>
-          <div class="loading-title">Locking Log Pose...</div>
+          <div class="loading-title">Loading Stream...</div>
         </div>
 
-        <!-- Single Dynamic Player Viewport -->
         <div id="player-viewport"></div>
       </div>
 
-      <!-- 3. Control Deck -->
       <div class="control-deck">
         <div class="deck-group">
-          <button type="button" class="btn" id="btn-prev-ep">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
-            <span>Prev</span>
-          </button>
-
-          <button type="button" class="btn btn-crimson" id="btn-next-ep">
-            <span>Next</span>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
-              <polyline points="9 18 15 12 9 6"></polyline>
-            </svg>
-          </button>
+          <button type="button" class="btn" id="btn-prev-ep">Prev</button>
+          <button type="button" class="btn btn-crimson" id="btn-next-ep">Next</button>
         </div>
-
         <div class="deck-group">
           <button type="button" class="btn btn-watched" id="btn-mark-watched">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
             <span id="watched-btn-text">Watched</span>
           </button>
-
           <button type="button" class="btn btn-theater" id="btn-theater-mode">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-            </svg>
             <span id="theater-btn-text">Lights Off</span>
           </button>
-
-          <button type="button" class="btn" id="btn-toggle-shield" title="Toggle top-right Drive pop-out shield">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-            </svg>
-            <span id="shield-btn-text">Shield: ON</span>
-          </button>
-
-          <div class="popover-wrapper">
-            <button type="button" class="btn" id="btn-subtitles-tip" aria-expanded="false">
-              <span>CC / 1080p</span>
-            </button>
-            <div class="subtitles-popover" id="subtitles-popover">
-              Click <strong>[CC]</strong> inside the player for subtitles, or <strong>⚙️ &rarr; 1080p</strong> for HD quality.
-            </div>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- RIGHT COLUMN: CLEAN SIDEBAR (EPISODE NAMES ONLY, NO EP 1/2/3 TAGS) -->
-    <aside class="playlist-sidebar" aria-label="Grand Line Logbook">
+    <aside class="playlist-sidebar" aria-label="Logbook">
       <div class="sidebar-header">
         <div class="sidebar-title-wrap">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e5b84b" stroke-width="2.2">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon>
-          </svg>
           <h2>Grand Line Logbook</h2>
         </div>
       </div>
 
       <div class="sidebar-filters">
         <div class="search-box">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
-            <circle cx="11" cy="11" r="8"></circle>
-            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-          </svg>
-          <input
-            type="search"
-            id="search-input"
-            class="search-input"
-            placeholder="Search episode name..."
-            autocomplete="off"
-          />
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="search" id="search-input" class="search-input" placeholder="Search files..." autocomplete="off"/>
         </div>
-        <select id="arc-filter-select" class="arc-select" aria-label="Filter episodes">
+        <select id="filter-select" class="filter-select">
           <option value="ALL">All</option>
           <option value="UNWATCHED">Unwatched</option>
         </select>
@@ -1052,75 +834,26 @@
 
       <div class="episode-list" id="episode-list-container" role="list"></div>
     </aside>
-
   </main>
 
   <div class="toast" id="app-toast" role="status" aria-live="polite"></div>
 
   <script>
     /* ============================================================================
-       🏴‍☠️ SARA'S ONE PIECE EPISODE LIST — ADD OR EDIT EPISODES HERE!
-       All `driveLink` values are now populated with your exact Google Drive link.
-       You can edit any `title` or replace `driveLink` with individual file links anytime!
+       EPISODE LIST — HEADINGS DRAWN DIRECTLY FROM VIDEO FILE NAMES
        ============================================================================ */
     const EPISODES = [
       {
         id: 1,
-        title: "I'm Luffy! The Man Who's Gonna Be King of the Pirates!",
-        arc: "Romance Dawn Arc",
-        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
-      },
-      {
-        id: 2,
-        title: "Enter the Great Swordsman! Pirate Hunter Roronoa Zoro!",
-        arc: "Romance Dawn Arc",
-        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
-      },
-      {
-        id: 3,
-        title: "Morgan versus Luffy! Who's the Mysterious Pretty Girl?",
-        arc: "Romance Dawn Arc",
-        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
-      },
-      {
-        id: 4,
-        title: "Luffy's Past! Enter Red-Haired Shanks!",
-        arc: "Romance Dawn Arc",
-        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
-      },
-      {
-        id: 5,
-        title: "A Terrifying Mysterious Power! Captain Buggy, the Clown Pirate!",
-        arc: "Orange Town Arc",
-        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
-      },
-      {
-        id: 6,
-        title: "Desperate Situation! Beast Tamer Mohji vs. Luffy!",
-        arc: "Orange Town Arc",
-        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
-      },
-      {
-        id: 7,
-        title: "Epic Showdown! Swordsman Zoro vs. Acrobat Cabaji!",
-        arc: "Orange Town Arc",
-        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
-      },
-      {
-        id: 8,
-        title: "Who is the Victor? Devil Fruit Power Showdown!",
-        arc: "Orange Town Arc",
-        driveLink: "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing"
+        title: "Ark 1.mp4",
+        driveLink: "https://drive.google.com/file/d/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL/view?usp=sharing" 
+        // Note: Replace the file ID above with your specific video file's share link once Google Drive finishes processing it.
       }
     ];
 
-    /* ============================================================================
-       STATE & LOCALSTORAGE
-       ============================================================================ */
     const STORAGE_KEYS = {
-      WATCHED: "sara_op_watched_v3",
-      LAST_EPISODE: "sara_op_last_ep_v3",
-      SHIELD_ENABLED: "sara_op_shield_v3"
+      WATCHED: "sara_op_watched_v4",
+      LAST_EPISODE: "sara_op_last_ep_v4"
     };
 
     const BERRY_PER_EPISODE = 1500000;
@@ -1129,230 +862,99 @@
       currentEpisodeId: EPISODES[0].id,
       watchedIds: new Set(),
       searchQuery: "",
-      selectedArcFilter: "ALL",
+      filterStatus: "ALL",
       theaterMode: false,
-      shieldEnabled: true,
       loadTimeoutId: null
     };
 
-    /* ============================================================================
-       1. BULLETPROOF GOOGLE DRIVE URL PARSER (SUPPORTS FILES + FOLDERS)
-       ============================================================================ */
-    function parseDriveUrl(input) {
-      if (!input || typeof input !== "string") return null;
-      const trimmed = input.trim();
-
-      if (
-        trimmed === "" ||
-        trimmed.toUpperCase().includes("PASTE_LINK_HERE") ||
-        trimmed.toUpperCase().includes("PASTE_GOOGLE_DRIVE_LINK_HERE")
-      ) {
-        return null;
-      }
-
-      // Support Google Drive Folder Links -> Embedded Folder View
-      const folderMatch = trimmed.match(/\/drive\/(?:u\/\d+\/)?folders\/([a-zA-Z0-9_-]{10,})/);
-      if (folderMatch && folderMatch[1]) {
-        return `https://drive.google.com/embeddedfolderview?id=${folderMatch[1]}#list`;
-      }
-
-      // Support Individual Google Drive Video File Links -> /preview Player
-      let extractedId = null;
-
-      const fileDMatch = trimmed.match(/\/file\/d\/([a-zA-Z0-9_-]{10,})/);
-      if (fileDMatch && fileDMatch[1]) {
-        extractedId = fileDMatch[1];
-      }
-
-      if (!extractedId) {
-        const queryIdMatch = trimmed.match(/[?&]id=([a-zA-Z0-9_-]{10,})/);
-        if (queryIdMatch && queryIdMatch[1]) {
-          extractedId = queryIdMatch[1];
-        }
-      }
-
-      if (!extractedId && /^[a-zA-Z0-9_-]{15,}$/.test(trimmed)) {
-        extractedId = trimmed;
-      }
-
-      if (!extractedId) return null;
-      return `https://drive.google.com/file/d/${extractedId}/preview`;
+    function parseDriveStreamUrl(input) {
+      if (!input) return null;
+      const fileIdMatch = input.match(/\/file\/d\/([a-zA-Z0-9_-]{10,})/) || input.match(/[?&]id=([a-zA-Z0-9_-]{10,})/);
+      const fileId = fileIdMatch ? fileIdMatch[1] : (/^[a-zA-Z0-9_-]{15,}$/.test(input.trim()) ? input.trim() : null);
+      if (!fileId) return null;
+      // Uses Google Drive's embedded preview stream endpoint so it plays right in the panel
+      return `https://drive.google.com/file/d/${fileId}/preview`;
     }
 
-    /* ============================================================================
-       DOM REFERENCES
-       ========================================================================== */
     const dom = {
       bountyCounter: document.getElementById("bounty-counter"),
       progressCountText: document.getElementById("progress-count-text"),
       progressFillBar: document.getElementById("progress-fill-bar"),
       btnResumeLast: document.getElementById("btn-resume-last"),
-
-      bannerArcBadge: document.getElementById("banner-arc-badge"),
+      bannerEpBadge: document.getElementById("banner-ep-badge"),
       bannerEpTitle: document.getElementById("banner-ep-title"),
       bannerStatusBadge: document.getElementById("banner-status-badge"),
-
       playerViewport: document.getElementById("player-viewport"),
       loadingOverlay: document.getElementById("player-loading-overlay"),
-      driveCornerShield: document.getElementById("drive-corner-shield"),
-
       btnPrevEp: document.getElementById("btn-prev-ep"),
       btnNextEp: document.getElementById("btn-next-ep"),
       btnMarkWatched: document.getElementById("btn-mark-watched"),
       watchedBtnText: document.getElementById("watched-btn-text"),
       btnTheaterMode: document.getElementById("btn-theater-mode"),
       theaterBtnText: document.getElementById("theater-btn-text"),
-      btnToggleShield: document.getElementById("btn-toggle-shield"),
-      shieldBtnText: document.getElementById("shield-btn-text"),
-      btnSubtitlesTip: document.getElementById("btn-subtitles-tip"),
-      subtitlesPopover: document.getElementById("subtitles-popover"),
-
       searchInput: document.getElementById("search-input"),
-      arcFilterSelect: document.getElementById("arc-filter-select"),
+      filterSelect: document.getElementById("filter-select"),
       episodeListContainer: document.getElementById("episode-list-container"),
       appToast: document.getElementById("app-toast")
     };
 
-    /* ============================================================================
-       STORAGE & HELPERS
-       ============================================================================ */
     function loadSavedState() {
       try {
         const rawWatched = localStorage.getItem(STORAGE_KEYS.WATCHED);
-        if (rawWatched) {
-          const parsed = JSON.parse(rawWatched);
-          if (Array.isArray(parsed)) state.watchedIds = new Set(parsed);
+        if (rawWatched) state.watchedIds = new Set(JSON.parse(rawWatched));
+        const savedId = localStorage.getItem(STORAGE_KEYS.LAST_EPISODE);
+        if (savedId && EPISODES.some(e => e.id === Number(savedId))) {
+          state.currentEpisodeId = Number(savedId);
         }
-
-        const savedEpId = localStorage.getItem(STORAGE_KEYS.LAST_EPISODE);
-        if (savedEpId) {
-          const numId = Number(savedEpId);
-          if (EPISODES.some(e => e.id === numId)) state.currentEpisodeId = numId;
-        }
-
-        const savedShield = localStorage.getItem(STORAGE_KEYS.SHIELD_ENABLED);
-        if (savedShield !== null) state.shieldEnabled = savedShield === "true";
       } catch (e) {}
     }
 
-    function saveWatchedState() {
-      try {
-        localStorage.setItem(STORAGE_KEYS.WATCHED, JSON.stringify(Array.from(state.watchedIds)));
-      } catch (e) {}
-    }
-
-    function saveLastEpisodeState(id) {
-      try {
-        localStorage.setItem(STORAGE_KEYS.LAST_EPISODE, String(id));
-      } catch (e) {}
-    }
-
-    function escapeHtml(str) {
-      const div = document.createElement("div");
-      div.textContent = str || "";
-      return div.innerHTML;
-    }
-
-    let toastTimer = null;
     function showToast(msg) {
       dom.appToast.textContent = msg;
       dom.appToast.classList.add("is-visible");
-      if (toastTimer) clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => {
-        dom.appToast.classList.remove("is-visible");
-      }, 2600);
+      setTimeout(() => dom.appToast.classList.remove("is-visible"), 2600);
     }
 
-    /* ============================================================================
-       MEMORY-SAFE IFRAME LIFECYCLE
-       ============================================================================ */
-    function destroyActiveIframe() {
-      if (state.loadTimeoutId) {
-        clearTimeout(state.loadTimeoutId);
-        state.loadTimeoutId = null;
-      }
-      const existingIframe = dom.playerViewport.querySelector("iframe");
-      if (existingIframe) {
-        existingIframe.onload = null;
-        existingIframe.src = "about:blank";
-        existingIframe.remove();
-      }
+    function mountPlayer(episode) {
+      if (state.loadTimeoutId) clearTimeout(state.loadTimeoutId);
       dom.playerViewport.innerHTML = "";
-    }
 
-    function mountEpisodePlayer(episode) {
-      destroyActiveIframe();
-
-      const embedUrl = parseDriveUrl(episode.driveLink);
-
-      if (!embedUrl) {
+      const streamUrl = parseDriveStreamUrl(episode.driveLink);
+      if (!streamUrl) {
         dom.loadingOverlay.classList.remove("is-visible");
-        dom.driveCornerShield.classList.add("shield-disabled");
-        const fallback = document.createElement("div");
-        fallback.className = "fallback-card";
-        fallback.innerHTML = `<h3>Log Pose Calibrating — Episode Link Not Added Yet</h3>`;
-        dom.playerViewport.appendChild(fallback);
+        dom.playerViewport.innerHTML = `<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#fae19c;font-family:Cinzel;">Please provide a direct file link to play in panel</div>`;
         return;
       }
 
-      updateShieldUI();
       dom.loadingOverlay.classList.add("is-visible");
-
       const iframe = document.createElement("iframe");
       iframe.setAttribute("allow", "autoplay; fullscreen; picture-in-picture; encrypted-media");
       iframe.setAttribute("allowfullscreen", "true");
-      iframe.setAttribute("webkitallowfullscreen", "true");
-      iframe.setAttribute("mozallowfullscreen", "true");
-      iframe.setAttribute("referrerpolicy", "no-referrer-when-downgrade");
-      iframe.setAttribute("frameborder", "0");
-      iframe.setAttribute("title", episode.title);
+      iframe.setAttribute("src", streamUrl);
 
-      const hideSpinner = () => {
-        dom.loadingOverlay.classList.remove("is-visible");
-        if (state.loadTimeoutId) {
-          clearTimeout(state.loadTimeoutId);
-          state.loadTimeoutId = null;
-        }
-      };
-
+      const hideSpinner = () => dom.loadingOverlay.classList.remove("is-visible");
       iframe.addEventListener("load", hideSpinner, { once: true });
-      state.loadTimeoutId = setTimeout(hideSpinner, 6000);
+      state.loadTimeoutId = setTimeout(hideSpinner, 5000);
 
-      iframe.src = embedUrl;
       dom.playerViewport.appendChild(iframe);
     }
 
-    /* ============================================================================
-       UI RENDERING
-       ============================================================================ */
-    function populateArcDropdown() {
-      const uniqueArcs = Array.from(new Set(EPISODES.map(e => e.arc).filter(Boolean)));
-      uniqueArcs.forEach(arc => {
-        const opt = document.createElement("option");
-        opt.value = arc;
-        opt.textContent = arc;
-        dom.arcFilterSelect.appendChild(opt);
-      });
-    }
-
-    function updateHudUI() {
+    function updateUI() {
       const total = EPISODES.length;
-      const watchedCount = EPISODES.filter(ep => state.watchedIds.has(ep.id)).length;
+      const watchedCount = EPISODES.filter(e => state.watchedIds.has(e.id)).length;
       const pct = total > 0 ? Math.round((watchedCount / total) * 100) : 0;
-      const bounty = watchedCount * BERRY_PER_EPISODE;
 
-      dom.bountyCounter.textContent = bounty.toLocaleString("en-US");
+      dom.bountyCounter.textContent = (watchedCount * BERRY_PER_EPISODE).toLocaleString("en-US");
       dom.progressCountText.textContent = `${watchedCount} / ${total}`;
       dom.progressFillBar.style.width = `${pct}%`;
-    }
 
-    function updateBannerAndControls(episode) {
-      const idx = EPISODES.findIndex(e => e.id === episode.id);
-      const isWatched = state.watchedIds.has(episode.id);
+      const idx = EPISODES.findIndex(e => e.id === state.currentEpisodeId);
+      const ep = EPISODES[idx] || EPISODES[0];
 
-      dom.bannerArcBadge.textContent = (episode.arc || "GRAND LINE").toUpperCase();
-      dom.bannerEpTitle.textContent = episode.title;
+      dom.bannerEpBadge.textContent = `#${String(idx + 1).padStart(2, "0")}`;
+      dom.bannerEpTitle.textContent = ep.title; // Drawn directly from video file name
 
+      const isWatched = state.watchedIds.has(ep.id);
       if (isWatched) {
         dom.bannerStatusBadge.textContent = "✔ COMPLETED";
         dom.bannerStatusBadge.className = "status-gem is-completed";
@@ -1369,181 +971,116 @@
       dom.btnNextEp.disabled = idx >= EPISODES.length - 1;
     }
 
-    function updateShieldUI() {
-      const currentEp = EPISODES.find(e => e.id === state.currentEpisodeId) || EPISODES[0];
-      const embedUrl = parseDriveUrl(currentEp.driveLink);
-      // Only cover the top-right corner when playing a direct /preview video
-      const isDirectVideo = embedUrl && embedUrl.includes("/preview");
-
-      if (state.shieldEnabled && isDirectVideo) {
-        dom.driveCornerShield.classList.remove("shield-disabled");
-      } else {
-        dom.driveCornerShield.classList.add("shield-disabled");
-      }
-
-      dom.shieldBtnText.textContent = state.shieldEnabled ? "Shield: ON" : "Shield: OFF";
-    }
-
-    function renderPlaylistSidebar(scrollToActive = false) {
-      const q = state.searchQuery.trim().toLowerCase();
-      const filter = state.selectedArcFilter;
-
+    function renderSidebar() {
       dom.episodeListContainer.innerHTML = "";
-      let activeCardEl = null;
+      const q = state.searchQuery.toLowerCase();
 
-      EPISODES.forEach(ep => {
+      EPISODES.forEach((ep, idx) => {
+        if (q && !ep.title.toLowerCase().includes(q)) return;
         const isWatched = state.watchedIds.has(ep.id);
-        const matchesSearch = !q || ep.title.toLowerCase().includes(q);
-        if (!matchesSearch) return;
-
-        if (filter === "UNWATCHED" && isWatched) return;
-        if (filter !== "ALL" && filter !== "UNWATCHED" && ep.arc !== filter) return;
+        if (state.filterStatus === "UNWATCHED" && isWatched) return;
 
         const isActive = ep.id === state.currentEpisodeId;
         const card = document.createElement("div");
         card.className = `ep-card${isActive ? " is-active" : ""}`;
-        card.setAttribute("role", "listitem");
-        card.setAttribute("tabindex", "0");
 
-        // Clean sidebar item: ONLY the episode name + watched toggle button
         card.innerHTML = `
           <div class="ep-card-main">
             <span class="compass-dot"></span>
-            <span class="ep-name-text">${escapeHtml(ep.title)}</span>
+            <span class="ep-name-text">${ep.title}</span>
           </div>
-          <button
-            type="button"
-            class="ep-watch-btn${isWatched ? " is-watched" : ""}"
-            title="${isWatched ? "Mark unwatched" : "Mark watched"}"
-            aria-label="Toggle watched status for ${escapeHtml(ep.title)}"
-          >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6">
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
+          <button type="button" class="ep-watch-btn${isWatched ? " is-watched" : ""}">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><polyline points="20 6 9 17 4 12"></polyline></svg>
           </button>
         `;
 
-        card.querySelector(".ep-watch-btn").addEventListener("click", e => {
+        card.querySelector(".ep-watch-btn").addEventListener("click", (e) => {
           e.stopPropagation();
-          toggleEpisodeWatched(ep.id);
-        });
-
-        card.addEventListener("click", () => selectEpisode(ep.id, true));
-        card.addEventListener("keydown", e => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            selectEpisode(ep.id, true);
+          if (state.watchedIds.has(ep.id)) {
+            state.watchedIds.delete(ep.id);
+          } else {
+            state.watchedIds.add(ep.id);
+            showToast("+฿ 1,500,000 Bounty Added!");
           }
+          localStorage.setItem(STORAGE_KEYS.WATCHED, JSON.stringify(Array.from(state.watchedIds)));
+          updateUI();
+          renderSidebar();
         });
 
-        if (isActive) activeCardEl = card;
+        card.addEventListener("click", () => {
+          state.currentEpisodeId = ep.id;
+          localStorage.setItem(STORAGE_KEYS.LAST_EPISODE, ep.id);
+          updateUI();
+          renderSidebar();
+          mountPlayer(ep);
+        });
+
         dom.episodeListContainer.appendChild(card);
       });
+    }
 
-      if (scrollToActive && activeCardEl) {
-        requestAnimationFrame(() => {
-          activeCardEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
-        });
+    // Controls bindings
+    dom.btnPrevEp.addEventListener("click", () => {
+      const idx = EPISODES.findIndex(e => e.id === state.currentEpisodeId);
+      if (idx > 0) {
+        state.currentEpisodeId = EPISODES[idx - 1].id;
+        updateUI();
+        renderSidebar();
+        mountPlayer(EPISODES[idx - 1]);
       }
-    }
+    });
 
-    /* ============================================================================
-       USER ACTIONS & EVENTS
-       ============================================================================ */
-    function selectEpisode(episodeId, scrollSidebar = true) {
-      const targetEp = EPISODES.find(ep => ep.id === episodeId) || EPISODES[0];
-      state.currentEpisodeId = targetEp.id;
-      saveLastEpisodeState(targetEp.id);
+    dom.btnNextEp.addEventListener("click", () => {
+      const idx = EPISODES.findIndex(e => e.id === state.currentEpisodeId);
+      if (idx >= 0 && idx < EPISODES.length - 1) {
+        state.currentEpisodeId = EPISODES[idx + 1].id;
+        updateUI();
+        renderSidebar();
+        mountPlayer(EPISODES[idx + 1]);
+      }
+    });
 
-      updateBannerAndControls(targetEp);
-      updateHudUI();
-      renderPlaylistSidebar(scrollSidebar);
-      mountEpisodePlayer(targetEp);
-    }
-
-    function toggleEpisodeWatched(episodeId) {
-      if (state.watchedIds.has(episodeId)) {
-        state.watchedIds.delete(episodeId);
+    dom.btnMarkWatched.addEventListener("click", () => {
+      const ep = EPISODES.find(e => e.id === state.currentEpisodeId);
+      if (!ep) return;
+      if (state.watchedIds.has(ep.id)) {
+        state.watchedIds.delete(ep.id);
       } else {
-        state.watchedIds.add(episodeId);
+        state.watchedIds.add(ep.id);
         showToast("+฿ 1,500,000 Bounty Added!");
       }
+      localStorage.setItem(STORAGE_KEYS.WATCHED, JSON.stringify(Array.from(state.watchedIds)));
+      updateUI();
+      renderSidebar();
+    });
 
-      saveWatchedState();
-      updateHudUI();
+    dom.btnTheaterMode.addEventListener("click", () => {
+      state.theaterMode = !state.theaterMode;
+      document.body.classList.toggle("theater-mode", state.theaterMode);
+      dom.btnTheaterMode.classList.toggle("is-active", state.theaterMode);
+      dom.theaterBtnText.textContent = state.theaterMode ? "Lights On" : "Lights Off";
+    });
 
-      const currentEp = EPISODES.find(e => e.id === state.currentEpisodeId);
-      if (currentEp) updateBannerAndControls(currentEp);
-      renderPlaylistSidebar(false);
-    }
+    dom.searchInput.addEventListener("input", (e) => {
+      state.searchQuery = e.target.value;
+      renderSidebar();
+    });
 
-    function bindEvents() {
-      dom.btnPrevEp.addEventListener("click", () => {
-        const idx = EPISODES.findIndex(e => e.id === state.currentEpisodeId);
-        if (idx > 0) selectEpisode(EPISODES[idx - 1].id, true);
-      });
+    dom.filterSelect.addEventListener("change", (e) => {
+      state.filterStatus = e.target.value;
+      renderSidebar();
+    });
 
-      dom.btnNextEp.addEventListener("click", () => {
-        const idx = EPISODES.findIndex(e => e.id === state.currentEpisodeId);
-        if (idx >= 0 && idx < EPISODES.length - 1) {
-          selectEpisode(EPISODES[idx + 1].id, true);
-        }
-      });
+    dom.btnResumeLast.addEventListener("click", () => {
+      const ep = EPISODES.find(e => e.id === state.currentEpisodeId) || EPISODES[0];
+      mountPlayer(ep);
+    });
 
-      dom.btnMarkWatched.addEventListener("click", () => {
-        toggleEpisodeWatched(state.currentEpisodeId);
-      });
-
-      dom.btnTheaterMode.addEventListener("click", () => {
-        state.theaterMode = !state.theaterMode;
-        document.body.classList.toggle("theater-mode", state.theaterMode);
-        dom.btnTheaterMode.classList.toggle("is-active", state.theaterMode);
-        dom.theaterBtnText.textContent = state.theaterMode ? "Lights On" : "Lights Off";
-      });
-
-      dom.btnToggleShield.addEventListener("click", () => {
-        state.shieldEnabled = !state.shieldEnabled;
-        try {
-          localStorage.setItem(STORAGE_KEYS.SHIELD_ENABLED, String(state.shieldEnabled));
-        } catch (e) {}
-        updateShieldUI();
-      });
-
-      dom.btnSubtitlesTip.addEventListener("click", e => {
-        e.stopPropagation();
-        dom.subtitlesPopover.classList.toggle("is-open");
-      });
-
-      document.addEventListener("click", e => {
-        if (!dom.subtitlesPopover.contains(e.target) && e.target !== dom.btnSubtitlesTip) {
-          dom.subtitlesPopover.classList.remove("is-open");
-        }
-      });
-
-      dom.btnResumeLast.addEventListener("click", () => {
-        selectEpisode(state.currentEpisodeId, true);
-        document.querySelector(".player-frame-shell").scrollIntoView({ behavior: "smooth", block: "center" });
-      });
-
-      dom.searchInput.addEventListener("input", e => {
-        state.searchQuery = e.target.value;
-        renderPlaylistSidebar(false);
-      });
-
-      dom.arcFilterSelect.addEventListener("change", e => {
-        state.selectedArcFilter = e.target.value;
-        renderPlaylistSidebar(false);
-      });
-    }
-
-    function initApp() {
-      loadSavedState();
-      populateArcDropdown();
-      bindEvents();
-      selectEpisode(state.currentEpisodeId, true);
-    }
-
-    initApp();
+    // Boot
+    loadSavedState();
+    updateUI();
+    renderSidebar();
+    mountPlayer(EPISODES.find(e => e.id === state.currentEpisodeId) || EPISODES[0]);
   </script>
 </body>
 </html>
