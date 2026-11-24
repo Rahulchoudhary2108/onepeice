@@ -15,8 +15,9 @@ html{scroll-behavior:smooth;color-scheme:dark}
 body{background-color:var(--abyss);background-image:radial-gradient(circle at 12% 15%,rgba(229,184,75,.09),transparent 38%),radial-gradient(circle at 88% 82%,rgba(217,56,58,.07),transparent 42%);background-attachment:fixed;color:var(--text);font-family:var(--body);min-height:100vh;overflow-x:hidden}
 body.theater{background-color:#020409;background-image:none}
 body.theater .top-header{opacity:.2;transition:opacity .25s}
-body.theater .top-header:hover{opacity:1}
+body.theater .top-header:hover,body.theater .top-header:focus-within{opacity:1}
 button{font-family:inherit}
+[hidden]{display:none!important}
 
 /* header */
 .top-header{position:sticky;top:0;z-index:40;background:rgba(13,21,38,.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
@@ -39,6 +40,7 @@ button{font-family:inherit}
 .btn-header:hover,.btn:hover:not(:disabled){background:#1d2f4d;border-color:var(--gold)}
 .btn:disabled,.btn-header:disabled{opacity:.35;cursor:not-allowed}
 .btn-red{background:linear-gradient(135deg,var(--red),#a82022);border-color:rgba(250,225,156,.38)}
+.btn-gold{background:linear-gradient(135deg,rgba(229,184,75,.28),rgba(217,56,58,.24));border-color:var(--gold);color:var(--gold-l)}
 .btn.on{background:rgba(45,212,191,.16);border-color:var(--teal);color:var(--teal)}
 .btn.lit{background:rgba(229,184,75,.22);border-color:var(--gold);color:var(--gold-l)}
 
@@ -66,25 +68,34 @@ body.theater .sidebar{display:none}
 .notice a{color:var(--gold);overflow-wrap:anywhere}
 .deck{background:var(--navy);border:1px solid var(--line);border-radius:12px;padding:.75rem 1rem;display:flex;align-items:center;justify-content:space-between;gap:.75rem;flex-wrap:wrap;box-shadow:var(--shadow)}
 .deck-group{display:flex;gap:.5rem;flex-wrap:wrap}
+.shortcuts{font-size:.72rem;color:var(--muted);display:flex;flex-wrap:wrap;gap:.75rem;padding:0 .25rem}
+.shortcuts kbd{background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:.08rem .35rem;font-family:inherit;font-size:.68rem;color:var(--gold-l)}
 
 /* sidebar */
 .sidebar{background:var(--navy);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
-.side-head{padding:.9rem 1.05rem;border-bottom:1px solid var(--line);display:flex;align-items:baseline;justify-content:space-between}
+.side-head{padding:.9rem 1.05rem;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+.side-head-left{display:flex;align-items:baseline;gap:.55rem}
 .side-head h2{font-family:var(--head);font-size:1rem;color:var(--gold-l)}
 .side-head span{font-size:.72rem;color:var(--muted)}
+.btn-shield{background:rgba(21,34,56,.85);border:1px solid var(--line);color:var(--muted);border-radius:999px;padding:.24rem .62rem;font-size:.68rem;font-weight:600;cursor:pointer;transition:all .15s}
+.btn-shield:hover{border-color:var(--gold);color:var(--gold-l)}
+.btn-shield.active{background:rgba(229,184,75,.16);border-color:rgba(229,184,75,.5);color:var(--gold-l)}
 .filters{padding:.7rem .9rem;display:grid;grid-template-columns:1fr auto;gap:.5rem;background:rgba(7,11,20,.45);border-bottom:1px solid var(--line)}
 .search,.select{background:var(--surface);border:1px solid var(--line);border-radius:7px;color:var(--text);font-size:.8rem;padding:.5rem .65rem}
 .search{width:100%}
-.list{max-height:min(640px,70vh);overflow-y:auto;padding:.65rem;display:flex;flex-direction:column;gap:.4rem}
+.list{max-height:min(640px,70vh);overflow-y:auto;padding:.65rem;display:flex;flex-direction:column;gap:.55rem}
 .list::-webkit-scrollbar{width:6px}
 .list::-webkit-scrollbar-thumb{background:rgba(229,184,75,.32);border-radius:999px}
-.saga-label{font-family:var(--head);font-size:.72rem;letter-spacing:.08em;color:var(--gold);padding:.55rem .3rem .15rem}
+.saga-section{display:flex;flex-direction:column;gap:.35rem}
+.saga-label{font-family:var(--head);font-size:.72rem;letter-spacing:.08em;color:var(--gold);padding:.35rem .3rem .05rem;font-weight:700}
+.saga-list{list-style:none;display:flex;flex-direction:column;gap:.4rem}
 .card{display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.6rem .75rem;border-radius:9px;background:rgba(21,34,56,.5);border:1px solid transparent;transition:all .16s}
 .card:hover{background:var(--surface);border-color:var(--line)}
 .card.active{background:linear-gradient(90deg,rgba(229,184,75,.16),rgba(21,34,56,.9));border-color:var(--gold)}
 .card-main{display:flex;align-items:center;gap:.6rem;min-width:0;flex:1;border:0;background:transparent;color:inherit;font:inherit;text-align:left;cursor:pointer;padding:.15rem 0}
 .num{font-family:var(--head);font-size:.74rem;font-weight:700;color:var(--gold);width:1.6rem;flex-shrink:0}
 .name{font-size:.86rem;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.spoiler-blur{filter:blur(4px);user-select:none;opacity:.68;letter-spacing:.08em}
 .tag{font-size:.64rem;font-weight:600;color:var(--muted);border:1px dashed rgba(148,163,184,.45);border-radius:999px;padding:.1rem .45rem;flex-shrink:0}
 .card.nolink .name{color:var(--muted)}
 .check{width:28px;height:28px;border-radius:50%;border:1px solid var(--line);background:rgba(7,11,20,.55);color:var(--muted);cursor:pointer;flex-shrink:0;transition:all .15s}
@@ -103,15 +114,16 @@ body.theater .sidebar{display:none}
 .banner{flex-wrap:wrap;padding:.8rem .9rem}.banner-title{white-space:normal}
 .deck{padding:.7rem}.btn{padding:.5rem .65rem;font-size:.75rem}
 .filters{grid-template-columns:1fr}
+.shortcuts{display:none}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
 <body>
 
-<header class="top-header">
+<header class="top-header" id="top-header">
   <div class="header-inner">
-    <a href="#top" class="brand">
+    <a href="#top" class="brand" id="brand-link">
       <div class="crest" aria-hidden="true">
         <svg width="28" height="28" viewBox="0 0 64 64" fill="none">
           <circle cx="32" cy="32" r="27" stroke="#e5b84b" stroke-width="2" stroke-dasharray="4 3" opacity=".7"/>
@@ -148,7 +160,7 @@ body.theater .sidebar{display:none}
 </header>
 
 <main class="workspace" id="top">
-  <section class="stage">
+  <section class="stage" id="stage" aria-label="Video player">
     <div class="banner">
       <div class="banner-left">
         <span class="badge" id="ep-badge">#01</span>
@@ -164,27 +176,42 @@ body.theater .sidebar{display:none}
 
     <div class="deck">
       <div class="deck-group">
-        <button type="button" class="btn" id="btn-prev">Prev</button>
-        <button type="button" class="btn btn-red" id="btn-next">Next</button>
+        <button type="button" class="btn" id="btn-prev" title="Previous arc (←)">Prev</button>
+        <button type="button" class="btn btn-red" id="btn-next" title="Next arc (→)">Next</button>
+        <button type="button" class="btn btn-gold" id="btn-watched-next" title="Mark current arc watched and jump to next">Watched → Next</button>
       </div>
       <div class="deck-group">
-        <button type="button" class="btn" id="btn-watched">Mark watched</button>
-        <button type="button" class="btn" id="btn-theater" aria-pressed="false">Lights off</button>
+        <button type="button" class="btn" id="btn-watched" title="Toggle watched (W)">Mark watched</button>
+        <a class="btn" id="btn-open-drive" target="_blank" rel="noopener noreferrer" hidden>Open in Drive ↗</a>
+        <button type="button" class="btn" id="btn-theater" title="Toggle theater mode (T)">Lights off</button>
       </div>
+    </div>
+
+    <div class="shortcuts" aria-hidden="true">
+      <span><kbd>←</kbd> <kbd>→</kbd> Prev / Next</span>
+      <span><kbd>W</kbd> Watched</span>
+      <span><kbd>T</kbd> Theater</span>
+      <span><kbd>/</kbd> Search</span>
     </div>
   </section>
 
-  <aside class="sidebar" aria-label="Logbook">
-    <div class="side-head"><h2>Grand Line Logbook</h2><span id="linked-count"></span></div>
+  <aside class="sidebar" aria-label="Grand Line Logbook">
+    <div class="side-head">
+      <div class="side-head-left">
+        <h2>Grand Line Logbook</h2>
+        <span id="linked-count"></span>
+      </div>
+      <button type="button" class="btn-shield active" id="btn-spoiler" title="Blur upcoming unwatched arcs to avoid spoilers">Spoilers hidden</button>
+    </div>
     <div class="filters">
-      <input type="search" id="search" class="search" placeholder="Search arcs…" autocomplete="off" aria-label="Search arcs" />
+      <input type="search" id="search" class="search" placeholder="Search arcs… (/)" autocomplete="off" aria-label="Search arcs" />
       <select id="filter" class="select" aria-label="Filter arcs">
         <option value="ALL">All</option>
         <option value="UNWATCHED">Unwatched</option>
         <option value="READY">Has link</option>
       </select>
     </div>
-    <div class="list" id="list" role="list"></div>
+    <div class="list" id="list"></div>
   </aside>
 </main>
 
@@ -195,96 +222,49 @@ body.theater .sidebar{display:none}
 
 /* ============================================================
    HOW TO ADD YOUR VIDEOS
-   Paste a link between the quotes of `link` for any arc below.
-   Accepted:
-     • Google Drive FILE link  https://drive.google.com/file/d/FILE_ID/view
-     • Just the Drive file ID  1AbCdEfGhIjKlMnOpQrStUvWxYz
-     • A direct video URL      https://example.com/arc.mp4  (enables resume-where-you-left-off)
-   A Drive FOLDER link will not work: open the video, Share → Copy link.
+   Each arc has a permanent `key` so inserting/reordering arcs
+   never breaks saved progress or bookmarked links.
+   Accepted `link` formats:
+   - Google Drive FILE link  https://drive.google.com/file/d/FILE_ID/view
+   - Just the Drive file ID  1AbCdEfGhIjKlMnOpQrStUvWxYz
+   - Direct video URL        https://example.com/arc.mp4 (enables full resume + auto-next)
    Set each Drive video to "Anyone with the link – Viewer".
    ============================================================ */
 const DRIVE_FOLDER_URL = "https://drive.google.com/drive/folders/1eLjsXD4E37hjhwDhE-QjqiouNQgCXOTL?usp=sharing";
 
-const ARCS = [
+const RAW_ARCS = [
   // East Blue Saga
-  { name: "Romance Dawn",        saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1dEyIymR8FAJbxA5jsvytbkZVXut6LOSC/view?usp=drive_link" },
-  { name: "Orange Town",         saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1pGLcbx-eYya7uTFB5nK3P8Ih4BCGOn30/view?usp=drive_link" },
-  { name: "Syrup Village",       saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1HKbBCrE1Rcp5A9oWBQta8hkmD9_KgnrW/view?usp=drive_link" },
-  { name: "Syrup Village part 2",       saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1vEIjA2uDznYNardyaCAqpQGpSUxWQ98G/view?usp=drive_link" },
-  { name: "Baratie part 1",             saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1ic9x6VtRmsJTR1CRj62YEkTVGmg-dtGk/view?usp=drive_link" },
-  { name: "Baratie part 2",             saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1AYPUBajPpqeRE9fBKKdMbkXJgyrCpyDR/view?usp=drive_link" },
-  { name: "Arlong Park part 1",         saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1NX13mRVp5OoIWk1oamoQXg9GSz4xh-kT/view?usp=drive_link" },
-  { name: "Arlong Park part 2",         saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1Ap1ub6aWGt_mbia6VFLfLGlbvCpp5w7w/view?usp=drive_link" },
-  { name: "Loguetown",           saga: "East Blue Saga",     link: "https://drive.google.com/file/d/14f6rN3mIld5hAZBC72BUvQvTgxqlRBQH/view?usp=drive_link" },
+  { key: "romance-dawn",        name: "Romance Dawn",         saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1dEyIymR8FAJbxA5jsvytbkZVXut6LOSC/view?usp=drive_link" },
+  { key: "orange-town",         name: "Orange Town",          saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1pGLcbx-eYya7uTFB5nK3P8Ih4BCGOn30/view?usp=drive_link" },
+  { key: "syrup-village-1",     name: "Syrup Village",        saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1HKbBCrE1Rcp5A9oWBQta8hkmD9_KgnrW/view?usp=drive_link" },
+  { key: "syrup-village-2",     name: "Syrup Village part 2", saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1vEIjA2uDznYNardyaCAqpQGpSUxWQ98G/view?usp=drive_link" },
+  { key: "baratie-1",           name: "Baratie part 1",       saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1ic9x6VtRmsJTR1CRj62YEkTVGmg-dtGk/view?usp=drive_link" },
+  { key: "baratie-2",           name: "Baratie part 2",       saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1AYPUBajPpqeRE9fBKKdMbkXJgyrCpyDR/view?usp=drive_link" },
+  { key: "arlong-park-1",       name: "Arlong Park part 1",   saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1NX13mRVp5OoIWk1oamoQXg9GSz4xh-kT/view?usp=drive_link" },
+  { key: "arlong-park-2",       name: "Arlong Park part 2",   saga: "East Blue Saga",     link: "https://drive.google.com/file/d/1Ap1ub6aWGt_mbia6VFLfLGlbvCpp5w7w/view?usp=drive_link" },
+  { key: "loguetown",           name: "Loguetown",            saga: "East Blue Saga",     link: "https://drive.google.com/file/d/14f6rN3mIld5hAZBC72BUvQvTgxqlRBQH/view?usp=drive_link" },
   // Arabasta Saga
-  { name: "Reverse Mountain",    saga: "Arabasta Saga",      link: "https://drive.google.com/file/d/1zjN_tuM-YMfl7A6tvVTEIYfowzaru4MS/view?usp=drive_link" },
-  { name: "Whisky Peak",         saga: "Arabasta Saga",      link: "https://drive.google.com/file/d/1Jw_DOS_T7Z4tZ2qnBY4xOqRLLXrw1VAK/view?usp=drive_link" },
-  { name: "Little Garden",       saga: "Arabasta Saga",      link: "https://drive.google.com/file/d/1ABdfFONhSDOiw_K66LNTkYRhGUonw3aC/view?usp=drive_link" },
-  { name: "Little Garden part 2",       saga: "Arabasta Saga",      link: "https://drive.google.com/file/d/1VULmfGBSiUL-0armEYNV8pc6MHAYYGAy/view?usp=drive_link" },
-  { name: "Drum Island",         saga: "Arabasta Saga",      link: "" },
-  { name: "Arabasta",            saga: "Arabasta Saga",      link: "" },
+  { key: "reverse-mountain",    name: "Reverse Mountain",     saga: "Arabasta Saga",      link: "https://drive.google.com/file/d/1zjN_tuM-YMfl7A6tvVTEIYfowzaru4MS/view?usp=drive_link" },
+  { key: "whisky-peak",         name: "Whisky Peak",          saga: "Arabasta Saga",      link: "https://drive.google.com/file/d/1Jw_DOS_T7Z4tZ2qnBY4xOqRLLXrw1VAK/view?usp=drive_link" },
+  { key: "little-garden-1",     name: "Little Garden",        saga: "Arabasta Saga",      link: "https://drive.google.com/file/d/1ABdfFONhSDOiw_K66LNTkYRhGUonw3aC/view?usp=drive_link" },
+  { key: "little-garden-2",     name: "Little Garden part 2", saga: "Arabasta Saga",      link: "https://drive.google.com/file/d/1VULmfGBSiUL-0armEYNV8pc6MHAYYGAy/view?usp=drive_link" },
+  { key: "drum-island",         name: "Drum Island",          saga: "Arabasta Saga",      link: "" },
+  { key: "arabasta",            name: "Arabasta",             saga: "Arabasta Saga",      link: "" },
   // Sky Island Saga
-  { name: "Jaya",                saga: "Sky Island Saga",    link: "" },
-  { name: "Skypiea",             saga: "Sky Island Saga",    link: "" },
+  { key: "jaya",                name: "Jaya",                 saga: "Sky Island Saga",    link: "" },
+  { key: "skypiea",             name: "Skypiea",              saga: "Sky Island Saga",    link: "" },
   // Water 7 Saga
-  { name: "Long Ring Long Land", saga: "Water 7 Saga",       link: "" },
-  { name: "Water 7",             saga: "Water 7 Saga",       link: "" },
-  { name: "Enies Lobby",         saga: "Water 7 Saga",       link: "" },
-  { name: "Post-Enies Lobby",    saga: "Water 7 Saga",       link: "" },
+  { key: "long-ring-long-land", name: "Long Ring Long Land",  saga: "Water 7 Saga",       link: "" },
+  { key: "water-7",             name: "Water 7",              saga: "Water 7 Saga",       link: "" },
+  { key: "enies-lobby",         name: "Enies Lobby",          saga: "Water 7 Saga",       link: "" },
+  { key: "post-enies-lobby",    name: "Post-Enies Lobby",     saga: "Water 7 Saga",       link: "" },
   // Thriller Bark Saga
-  { name: "Thriller Bark",       saga: "Thriller Bark Saga", link: "" },
+  { key: "thriller-bark",       name: "Thriller Bark",        saga: "Thriller Bark Saga", link: "" },
   // Summit War Saga
-  { name: "Sabaody Archipelago", saga: "Summit War Saga",    link: "" },
-  { name: "Amazon Lily",         saga: "Summit War Saga",    link: "" }
-  // To add more: copy a line above, e.g. { name: "Impel Down", saga: "Summit War Saga", link: "" }
-].map((arc, i) => ({ ...arc, id: i + 1 }));
-
-const KEYS = { watched: "sara_op_watched_v6", last: "sara_op_last_ep_v6", pos: "sara_op_positions_v1" };
-const BERRY_PER_ARC = 1500000;
-const SAVE_EVERY = 5;
-
-const state = { current: ARCS[0].id, watched: new Set(), positions: {}, query: "", filter: "ALL", theater: false };
-const $ = id => document.getElementById(id);
-const dom = {
-  bounty: $("bounty"), count: $("count"), fill: $("fill"), linked: $("linked-count"),
-  badge: $("ep-badge"), title: $("ep-title"), saga: $("ep-saga"), status: $("ep-status"),
-  player: $("player"), prev: $("btn-prev"), next: $("btn-next"), watched: $("btn-watched"),
-  theater: $("btn-theater"), cont: $("btn-continue"), search: $("search"), filter: $("filter"),
-  list: $("list"), toast: $("toast")
-};
-$("drive-link").href = DRIVE_FOLDER_URL;
-
-/* ---------- storage ---------- */
-const store = {
-  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
-  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
-};
-function loadState() {
-  try {
-    const w = JSON.parse(store.get(KEYS.watched) || "[]");
-    const valid = new Set(ARCS.map(a => a.id));
-    if (Array.isArray(w)) state.watched = new Set(w.filter(id => valid.has(id)));
-  } catch (e) {}
-  const last = Number(store.get(KEYS.last));
-  if (ARCS.some(a => a.id === last)) state.current = last;
-  try {
-    const p = JSON.parse(store.get(KEYS.pos) || "{}");
-    if (p && typeof p === "object" && !Array.isArray(p)) state.positions = p;
-  } catch (e) {}
-}
-const saveWatched = () => store.set(KEYS.watched, JSON.stringify([...state.watched]));
-const savePositions = () => store.set(KEYS.pos, JSON.stringify(state.positions));
-
-/* ---------- helpers ---------- */
-let toastTimer;
-function toast(msg) {
-  dom.toast.textContent = msg;
-  dom.toast.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => dom.toast.classList.remove("show"), 2600);
-}
-const idx = () => ARCS.findIndex(a => a.id === state.current);
-const cur = () => ARCS[idx()] || ARCS[0];
+  { key: "sabaody-archipelago", name: "Sabaody Archipelago",  saga: "Summit War Saga",    link: "" },
+  { key: "amazon-lily",         name: "Amazon Lily",          saga: "Summit War Saga",    link: "" }
+  // To add more: { key: "impel-down", name: "Impel Down", saga: "Summit War Saga", link: "" }
+];
 
 function parseLink(raw) {
   const v = (raw || "").trim();
@@ -300,39 +280,266 @@ function parseLink(raw) {
   }
   return { type: "direct", url: u.href };
 }
-const hasLink = arc => ["drive", "direct"].includes(parseLink(arc.link).type);
+
+// Precompute parsed links and display numbers once
+const ARCS = RAW_ARCS.map((arc, i) => {
+  const linkInfo = parseLink(arc.link);
+  return {
+    ...arc,
+    num: i + 1,
+    linkInfo,
+    linked: linkInfo.type === "drive" || linkInfo.type === "direct"
+  };
+});
+const ARC_BY_KEY = new Map(ARCS.map(a => [a.key, a]));
+const ARC_INDEX_BY_KEY = new Map(ARCS.map((a, i) => [a.key, i]));
+
+const KEYS = {
+  watched: "sara_op_watched_v7",
+  last: "sara_op_last_ep_v7",
+  pos: "sara_op_positions_v2",
+  spoiler: "sara_op_spoiler_v1"
+};
+const LEGACY_KEYS = {
+  watched: "sara_op_watched_v6",
+  last: "sara_op_last_ep_v6",
+  pos: "sara_op_positions_v1"
+};
+const BERRY_PER_ARC = 1500000;
+const SAVE_EVERY = 5;
+const SITE_TITLE = "Sara’s One Piece Journey";
+
+const state = {
+  current: ARCS[0].key,
+  watched: new Set(),
+  positions: {},
+  query: "",
+  filter: "ALL",
+  theater: false,
+  spoilerShield: true
+};
+
+let activeVideo = null;
+let activeVideoKey = null;
+
+const $ = id => document.getElementById(id);
+const dom = {
+  header: $("top-header"), brand: $("brand-link"), stage: $("stage"),
+  bounty: $("bounty"), count: $("count"), fill: $("fill"), linked: $("linked-count"),
+  badge: $("ep-badge"), title: $("ep-title"), saga: $("ep-saga"), status: $("ep-status"),
+  player: $("player"), prev: $("btn-prev"), next: $("btn-next"),
+  watchedNext: $("btn-watched-next"), watched: $("btn-watched"),
+  openDrive: $("btn-open-drive"), theater: $("btn-theater"),
+  cont: $("btn-continue"), spoiler: $("btn-spoiler"),
+  search: $("search"), filter: $("filter"), list: $("list"), toast: $("toast")
+};
+$("drive-link").href = DRIVE_FOLDER_URL;
+
+/* ---------- storage & migration ---------- */
+const store = {
+  get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } },
+  set(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+};
+
+function saveWatched() { store.set(KEYS.watched, JSON.stringify([...state.watched])); }
+function savePositions() { store.set(KEYS.pos, JSON.stringify(state.positions)); }
+
+function migrateLegacyStorage() {
+  if (!store.get(KEYS.watched) && store.get(LEGACY_KEYS.watched)) {
+    try {
+      const oldW = JSON.parse(store.get(LEGACY_KEYS.watched) || "[]");
+      if (Array.isArray(oldW)) {
+        const mapped = oldW.map(n => ARCS[Number(n) - 1]?.key).filter(Boolean);
+        store.set(KEYS.watched, JSON.stringify(mapped));
+      }
+    } catch (e) {}
+  }
+  if (!store.get(KEYS.last) && store.get(LEGACY_KEYS.last)) {
+    const oldLast = Number(store.get(LEGACY_KEYS.last));
+    if (ARCS[oldLast - 1]) store.set(KEYS.last, ARCS[oldLast - 1].key);
+  }
+  if (!store.get(KEYS.pos) && store.get(LEGACY_KEYS.pos)) {
+    try {
+      const oldP = JSON.parse(store.get(LEGACY_KEYS.pos) || "{}");
+      if (oldP && typeof oldP === "object" && !Array.isArray(oldP)) {
+        const mapped = {};
+        for (const [n, sec] of Object.entries(oldP)) {
+          const arc = ARCS[Number(n) - 1];
+          if (arc) mapped[arc.key] = sec;
+        }
+        store.set(KEYS.pos, JSON.stringify(mapped));
+      }
+    } catch (e) {}
+  }
+}
+
+function getHashKey() {
+  const raw = decodeURIComponent(window.location.hash.replace(/^#/, "")).trim();
+  return ARC_BY_KEY.has(raw) ? raw : null;
+}
+
+function loadState() {
+  migrateLegacyStorage();
+  try {
+    const w = JSON.parse(store.get(KEYS.watched) || "[]");
+    if (Array.isArray(w)) state.watched = new Set(w.filter(k => ARC_BY_KEY.has(k)));
+  } catch (e) {}
+
+  const savedLast = store.get(KEYS.last);
+  if (savedLast && ARC_BY_KEY.has(savedLast)) state.current = savedLast;
+
+  const hashKey = getHashKey();
+  if (hashKey) state.current = hashKey;
+
+  try {
+    const p = JSON.parse(store.get(KEYS.pos) || "{}");
+    if (p && typeof p === "object" && !Array.isArray(p)) state.positions = p;
+  } catch (e) {}
+
+  const savedSpoiler = store.get(KEYS.spoiler);
+  if (savedSpoiler === "0") state.spoilerShield = false;
+}
+
+/* ---------- helpers ---------- */
+let toastTimer;
+function toast(msg) {
+  dom.toast.textContent = msg;
+  dom.toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => dom.toast.classList.remove("show"), 2600);
+}
+
+const idx = () => ARC_INDEX_BY_KEY.get(state.current) ?? 0;
+const cur = () => ARC_BY_KEY.get(state.current) || ARCS[0];
+
+function getFirstUnwatchedIndex() {
+  return ARCS.findIndex(a => !state.watched.has(a.key));
+}
+
+function isSpoilerHidden(arc, arcIndex, firstUnwatchedIndex) {
+  if (!state.spoilerShield) return false;
+  if (firstUnwatchedIndex === -1) return false;
+  if (state.watched.has(arc.key)) return false;
+  if (arc.key === state.current) return false;
+  return arcIndex > firstUnwatchedIndex;
+}
+
+function scrollPlayerIntoViewOnMobile() {
+  if (!window.matchMedia("(max-width: 1024px)").matches) return;
+  const headerH = dom.header ? dom.header.offsetHeight : 0;
+  const top = dom.stage.getBoundingClientRect().top + window.scrollY - headerH - 12;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  window.scrollTo({ top: Math.max(0, top), behavior: reduced ? "auto" : "smooth" });
+}
+
+function syncUrlAndTitle(arc, pushHistory) {
+  document.title = `${arc.name} — ${SITE_TITLE}`;
+  const targetHash = `#${arc.key}`;
+  if (window.location.hash !== targetHash) {
+    try {
+      if (pushHistory) history.pushState({ arcKey: arc.key }, "", targetHash);
+      else history.replaceState({ arcKey: arc.key }, "", targetHash);
+    } catch (e) {
+      window.location.hash = targetHash;
+    }
+  }
+}
+
+function flushVideoPosition() {
+  if (!activeVideo || !activeVideoKey || activeVideo.ended) return;
+  const s = Math.floor(activeVideo.currentTime || 0);
+  if (s > 0 && state.positions[activeVideoKey] !== s) {
+    state.positions[activeVideoKey] = s;
+    savePositions();
+  }
+}
 
 /* ---------- player ---------- */
-function notice(heading, html) {
+function renderNotice(heading, parts) {
   const wrap = document.createElement("div");
   wrap.className = "notice";
   const h = document.createElement("strong");
   h.textContent = heading;
   const p = document.createElement("p");
-  p.innerHTML = html;
+  for (const part of parts) {
+    if (typeof part === "string") {
+      p.append(document.createTextNode(part));
+    } else if (part.code) {
+      const c = document.createElement("code");
+      c.textContent = part.code;
+      p.append(c);
+    } else if (part.link) {
+      const a = document.createElement("a");
+      a.href = part.link.href;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+      a.textContent = part.link.text;
+      p.append(a);
+    } else if (part.br) {
+      p.append(document.createElement("br"));
+    }
+  }
   wrap.append(h, p);
   dom.player.replaceChildren(wrap);
 }
 
 function mountPlayer(arc, startOver) {
+  flushVideoPosition();
+  activeVideo = null;
+  activeVideoKey = null;
   dom.player.replaceChildren();
-  const info = parseLink(arc.link);
+
+  const info = arc.linkInfo;
 
   if (info.type === "direct") {
     const video = document.createElement("video");
     Object.assign(video, { controls: true, autoplay: false, playsInline: true, preload: "metadata", src: info.url });
     video.setAttribute("aria-label", arc.name);
+    activeVideo = video;
+    activeVideoKey = arc.key;
+
     let lastSaved = -SAVE_EVERY;
     video.addEventListener("loadedmetadata", () => {
-      const at = Number(state.positions[arc.id] || 0);
-      if (!startOver && at > 3 && at < video.duration - 3) { video.currentTime = at; toast("Picked up where you left off"); }
+      const at = Number(state.positions[arc.key] || 0);
+      if (!startOver && at > 3 && at < video.duration - 3) {
+        video.currentTime = at;
+        toast("Picked up where you left off");
+      }
     });
     video.addEventListener("timeupdate", () => {
       const s = Math.floor(video.currentTime);
-      if (s - lastSaved >= SAVE_EVERY) { state.positions[arc.id] = s; savePositions(); lastSaved = s; }
+      if (Math.abs(s - lastSaved) >= SAVE_EVERY) {
+        state.positions[arc.key] = s;
+        savePositions();
+        lastSaved = s;
+      }
     });
-    video.addEventListener("ended", () => { state.positions[arc.id] = 0; savePositions(); });
-    video.addEventListener("error", () => notice("This video can’t be played", "Check that the link goes straight to a video file (like <code>.mp4</code>) and that the host allows playback from this page."));
+    video.addEventListener("pause", flushVideoPosition);
+    video.addEventListener("seeked", flushVideoPosition);
+    video.addEventListener("ended", () => {
+      state.positions[arc.key] = 0;
+      savePositions();
+      if (!state.watched.has(arc.key)) {
+        state.watched.add(arc.key);
+        saveWatched();
+        updateUI();
+        renderList();
+      }
+      const nextArc = ARCS[idx() + 1];
+      if (nextArc && nextArc.linked) {
+        toast(`Finished ${arc.name} — loading ${nextArc.name}`);
+        selectArc(nextArc, { startOver: true, pushHistory: true });
+      } else {
+        toast(`Completed ${arc.name}!`);
+      }
+    });
+    video.addEventListener("error", () => {
+      renderNotice("This video can’t be played", [
+        "Check that the link goes straight to a video file (like ",
+        { code: ".mp4" },
+        ") and that the host allows playback from this page."
+      ]);
+    });
     dom.player.appendChild(video);
     return;
   }
@@ -348,125 +555,326 @@ function mountPlayer(arc, startOver) {
     return;
   }
 
-  const folder = `<a href="${DRIVE_FOLDER_URL}" target="_blank" rel="noopener noreferrer">Open Drive folder</a>`;
   if (info.type === "folder") {
-    notice("That’s a folder link", `Arc ${arc.id} needs a link to the video itself. Open the video in Drive, choose Share, copy the link (it contains <code>/file/d/</code>) and paste it into <code>link</code>.<br><br>${folder}`);
+    renderNotice("That’s a folder link", [
+      `Arc #${arc.num} needs a link to the video itself. Open the video in Drive, choose Share, copy the link (it contains `,
+      { code: "/file/d/" },
+      ") and paste it into ",
+      { code: "link" },
+      ".",
+      { br: true }, { br: true },
+      { link: { href: DRIVE_FOLDER_URL, text: "Open Drive folder" } }
+    ]);
   } else if (info.type === "invalid") {
-    notice("That link isn’t recognised", `Use a Drive file link, a Drive file ID, or a direct video URL in the <code>link</code> field for “${arc.name}”.`);
+    renderNotice("That link isn’t recognised", [
+      "Use a Drive file link, a Drive file ID, or a direct video URL in the ",
+      { code: "link" },
+      ` field for “${arc.name}”.`
+    ]);
   } else {
-    notice(`No video for “${arc.name}” yet`, `Paste its link into the ARCS list in this file: find <code>${arc.name}</code> and put the link between the quotes of <code>link</code>.<br><br>${folder}`);
+    renderNotice(`No video for “${arc.name}” yet`, [
+      "Paste its link into ",
+      { code: "RAW_ARCS" },
+      " in this file: find ",
+      { code: arc.key },
+      " and put the link between the quotes of ",
+      { code: "link" },
+      ".",
+      { br: true }, { br: true },
+      { link: { href: DRIVE_FOLDER_URL, text: "Open Drive folder" } }
+    ]);
   }
 }
 
 /* ---------- UI ---------- */
 function updateUI() {
   const total = ARCS.length;
-  const done = ARCS.filter(a => state.watched.has(a.id)).length;
+  const done = ARCS.reduce((acc, a) => acc + (state.watched.has(a.key) ? 1 : 0), 0);
+  const linkedCount = ARCS.reduce((acc, a) => acc + (a.linked ? 1 : 0), 0);
+
   dom.bounty.textContent = (done * BERRY_PER_ARC).toLocaleString("en-US");
   dom.count.textContent = `${done} / ${total}`;
-  dom.fill.style.width = `${Math.round((done / total) * 100)}%`;
-  dom.linked.textContent = `${ARCS.filter(hasLink).length}/${total} linked`;
+  dom.fill.style.width = total ? `${Math.round((done / total) * 100)}%` : "0%";
+  dom.linked.textContent = `${linkedCount}/${total} linked`;
 
-  const i = idx(), arc = cur(), isDone = state.watched.has(arc.id);
+  const i = idx(), arc = cur(), isDone = state.watched.has(arc.key);
   dom.badge.textContent = `#${String(i + 1).padStart(2, "0")}`;
   dom.title.textContent = arc.name;
   dom.saga.textContent = arc.saga;
   dom.status.textContent = isDone ? "✔ Completed" : "⏳ Voyage";
   dom.status.className = `gem ${isDone ? "done" : "todo"}`;
+
   dom.watched.classList.toggle("on", isDone);
   dom.watched.textContent = isDone ? "Completed ✔" : "Mark watched";
+
   dom.prev.disabled = i <= 0;
   dom.next.disabled = i >= total - 1;
+  dom.watchedNext.disabled = i >= total - 1;
+
+  if (arc.linkInfo.type === "drive") {
+    dom.openDrive.href = `https://drive.google.com/file/d/${encodeURIComponent(arc.linkInfo.id)}/view`;
+    dom.openDrive.hidden = false;
+  } else {
+    dom.openDrive.hidden = true;
+    dom.openDrive.removeAttribute("href");
+  }
+
+  dom.spoiler.classList.toggle("active", state.spoilerShield);
+  dom.spoiler.textContent = state.spoilerShield ? "Spoilers hidden" : "Spoilers shown";
 }
 
 function toggleWatched(arc) {
-  if (state.watched.has(arc.id)) { state.watched.delete(arc.id); toast("Arc marked as unwatched"); }
-  else { state.watched.add(arc.id); toast("+฿ 1,500,000 bounty added!"); }
-  saveWatched(); updateUI(); renderList();
+  if (state.watched.has(arc.key)) {
+    state.watched.delete(arc.key);
+    toast("Arc marked as unwatched");
+  } else {
+    state.watched.add(arc.key);
+    toast("+฿ 1,500,000 bounty added!");
+  }
+  saveWatched();
+  updateUI();
+  renderList();
 }
 
-function selectArc(arc, startOver) {
-  state.current = arc.id;
-  store.set(KEYS.last, String(arc.id));
-  updateUI(); renderList(); mountPlayer(arc, startOver);
+function selectArc(arc, opts = {}) {
+  const { startOver = false, pushHistory = true, scrollMobile = false } = opts;
+  state.current = arc.key;
+  store.set(KEYS.last, arc.key);
+  syncUrlAndTitle(arc, pushHistory);
+  updateUI();
+  renderList();
+  mountPlayer(arc, startOver);
+  if (scrollMobile) scrollPlayerIntoViewOnMobile();
 }
 
 function renderList() {
-  dom.list.replaceChildren();
+  const frag = document.createDocumentFragment();
   const q = state.query.trim().toLowerCase();
-  let shown = 0, lastSaga = "";
+  const firstUnwatched = getFirstUnwatchedIndex();
 
-  ARCS.forEach(arc => {
-    const isDone = state.watched.has(arc.id), linked = hasLink(arc);
-    if (q && !`${arc.name} ${arc.saga}`.toLowerCase().includes(q)) return;
+  // Group filtered arcs by saga so we render valid <section><h3><ul><li> markup
+  const groups = [];
+  const groupMap = new Map();
+
+  ARCS.forEach((arc, i) => {
+    const isDone = state.watched.has(arc.key);
+    const hidden = isSpoilerHidden(arc, i, firstUnwatched);
+
     if (state.filter === "UNWATCHED" && isDone) return;
-    if (state.filter === "READY" && !linked) return;
-    shown++;
+    if (state.filter === "READY" && !arc.linked) return;
 
-    if (arc.saga !== lastSaga) {
-      lastSaga = arc.saga;
-      const label = document.createElement("div");
-      label.className = "saga-label";
-      label.textContent = arc.saga;
-      dom.list.appendChild(label);
+    if (q) {
+      // Prevent search from revealing spoiler-shielded future arc names
+      const searchable = hidden ? `arc ${arc.num}` : `${arc.name} ${arc.saga} ${arc.num}`;
+      if (!searchable.toLowerCase().includes(q)) return;
     }
 
-    const card = document.createElement("div");
-    card.className = `card${arc.id === state.current ? " active" : ""}${linked ? "" : " nolink"}`;
-    card.setAttribute("role", "listitem");
-
-    const main = document.createElement("button");
-    main.type = "button";
-    main.className = "card-main";
-    if (arc.id === state.current) main.setAttribute("aria-current", "true");
-    const num = Object.assign(document.createElement("span"), { className: "num", textContent: String(arc.id).padStart(2, "0") });
-    const name = Object.assign(document.createElement("span"), { className: "name", textContent: arc.name });
-    main.append(num, name);
-    if (!linked) main.appendChild(Object.assign(document.createElement("span"), { className: "tag", textContent: "no link" }));
-    main.addEventListener("click", () => selectArc(arc));
-
-    const check = document.createElement("button");
-    check.type = "button";
-    check.className = `check${isDone ? " on" : ""}`;
-    check.textContent = isDone ? "✓" : "○";
-    check.setAttribute("aria-label", `${isDone ? "Mark unwatched" : "Mark watched"}: ${arc.name}`);
-    check.addEventListener("click", () => toggleWatched(arc));
-
-    card.append(main, check);
-    dom.list.appendChild(card);
+    let group = groupMap.get(arc.saga);
+    if (!group) {
+      group = { saga: arc.saga, items: [], allHidden: true };
+      groupMap.set(arc.saga, group);
+      groups.push(group);
+    }
+    if (!hidden) group.allHidden = false;
+    group.items.push({ arc, isDone, hidden });
   });
 
-  if (!shown) dom.list.appendChild(Object.assign(document.createElement("div"), { className: "empty", textContent: "No arcs match your search or filter." }));
+  if (!groups.length) {
+    const empty = document.createElement("p");
+    empty.className = "empty";
+    empty.textContent = "No arcs match your search or filter.";
+    frag.appendChild(empty);
+    dom.list.replaceChildren(frag);
+    return;
+  }
+
+  for (const group of groups) {
+    const section = document.createElement("section");
+    section.className = "saga-section";
+
+    const heading = document.createElement("h3");
+    heading.className = `saga-label${group.allHidden ? " spoiler-blur" : ""}`;
+    heading.textContent = group.allHidden ? "???" : group.saga;
+
+    const ul = document.createElement("ul");
+    ul.className = "saga-list";
+
+    for (const { arc, isDone, hidden } of group.items) {
+      const li = document.createElement("li");
+      li.className = `card${arc.key === state.current ? " active" : ""}${arc.linked ? "" : " nolink"}`;
+
+      const main = document.createElement("button");
+      main.type = "button";
+      main.className = "card-main";
+      main.dataset.action = "select";
+      main.dataset.key = arc.key;
+      if (arc.key === state.current) main.setAttribute("aria-current", "true");
+      if (hidden) main.setAttribute("aria-label", `Arc ${arc.num} (spoiler hidden)`);
+
+      const num = document.createElement("span");
+      num.className = "num";
+      num.textContent = String(arc.num).padStart(2, "0");
+
+      const name = document.createElement("span");
+      name.className = `name${hidden ? " spoiler-blur" : ""}`;
+      name.textContent = hidden ? "???" : arc.name;
+
+      main.append(num, name);
+      if (!arc.linked) {
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = "no link";
+        main.appendChild(tag);
+      }
+
+      const check = document.createElement("button");
+      check.type = "button";
+      check.className = `check${isDone ? " on" : ""}`;
+      check.dataset.action = "toggle";
+      check.dataset.key = arc.key;
+      check.textContent = isDone ? "✓" : "○";
+      const safeLabel = hidden ? `Arc ${arc.num}` : arc.name;
+      check.setAttribute("aria-label", `${isDone ? "Mark unwatched" : "Mark watched"}: ${safeLabel}`);
+
+      li.append(main, check);
+      ul.appendChild(li);
+    }
+
+    section.append(heading, ul);
+    frag.appendChild(section);
+  }
+
+  dom.list.replaceChildren(frag);
 }
 
-/* ---------- events ---------- */
-const move = d => { const n = ARCS[idx() + d]; if (n) selectArc(n); };
+/* ---------- actions & events ---------- */
+function move(delta, scrollMobile = false) {
+  const target = ARCS[idx() + delta];
+  if (target) selectArc(target, { pushHistory: true, scrollMobile });
+}
+
+function toggleTheater(forceState) {
+  state.theater = typeof forceState === "boolean" ? forceState : !state.theater;
+  document.body.classList.toggle("theater", state.theater);
+  dom.theater.classList.toggle("lit", state.theater);
+  dom.theater.textContent = state.theater ? "Lights on" : "Lights off";
+}
+
+// Delegated event listener for the entire logbook list
+dom.list.addEventListener("click", e => {
+  const btn = e.target.closest("button[data-action]");
+  if (!btn) return;
+  const arc = ARC_BY_KEY.get(btn.dataset.key);
+  if (!arc) return;
+  if (btn.dataset.action === "select") {
+    selectArc(arc, { pushHistory: true, scrollMobile: true });
+  } else if (btn.dataset.action === "toggle") {
+    toggleWatched(arc);
+  }
+});
+
+dom.brand.addEventListener("click", e => {
+  e.preventDefault();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+});
+
 dom.prev.addEventListener("click", () => move(-1));
 dom.next.addEventListener("click", () => move(1));
 dom.watched.addEventListener("click", () => toggleWatched(cur()));
 
-dom.theater.addEventListener("click", () => {
-  state.theater = !state.theater;
-  document.body.classList.toggle("theater", state.theater);
-  dom.theater.classList.toggle("lit", state.theater);
-  dom.theater.textContent = state.theater ? "Lights on" : "Lights off";
-  dom.theater.setAttribute("aria-pressed", String(state.theater));
+dom.watchedNext.addEventListener("click", () => {
+  const currentArc = cur();
+  if (!state.watched.has(currentArc.key)) {
+    state.watched.add(currentArc.key);
+    saveWatched();
+  }
+  const nextArc = ARCS[idx() + 1];
+  if (nextArc) {
+    toast(`Watched ${currentArc.name} → ${nextArc.name}`);
+    selectArc(nextArc, { pushHistory: true });
+  }
 });
 
-dom.search.addEventListener("input", e => { state.query = e.target.value; renderList(); });
-dom.filter.addEventListener("change", e => { state.filter = e.target.value; renderList(); });
+dom.theater.addEventListener("click", () => toggleTheater());
+
+dom.spoiler.addEventListener("click", () => {
+  state.spoilerShield = !state.spoilerShield;
+  store.set(KEYS.spoiler, state.spoilerShield ? "1" : "0");
+  updateUI();
+  renderList();
+  toast(state.spoilerShield ? "Spoiler shield enabled" : "All future arcs revealed");
+});
+
+dom.search.addEventListener("input", e => {
+  state.query = e.target.value;
+  renderList();
+});
+
+dom.filter.addEventListener("change", e => {
+  state.filter = e.target.value;
+  renderList();
+});
 
 dom.cont.addEventListener("click", () => {
-  const next = ARCS.find(a => !state.watched.has(a.id) && hasLink(a));
-  if (next) selectArc(next);
-  else toast(ARCS.some(hasLink) ? "All linked arcs are watched" : "Add a video link first");
+  const next = ARCS.find(a => !state.watched.has(a.key) && a.linked);
+  if (next) selectArc(next, { pushHistory: true, scrollMobile: true });
+  else toast(ARCS.some(a => a.linked) ? "All linked arcs are watched" : "Add a video link first");
+});
+
+// Deep linking via browser Back / Forward or manual hash edits
+window.addEventListener("hashchange", () => {
+  const hashKey = getHashKey();
+  if (hashKey && hashKey !== state.current) {
+    selectArc(ARC_BY_KEY.get(hashKey), { pushHistory: false });
+  }
+});
+
+// Save direct video progress when switching tabs or closing the page
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) flushVideoPosition();
+});
+window.addEventListener("pagehide", flushVideoPosition);
+
+// Keyboard shortcuts
+document.addEventListener("keydown", e => {
+  if (e.ctrlKey || e.metaKey || e.altKey) return;
+  const el = document.activeElement;
+  const inField = el && (el.tagName === "INPUT" || el.tagName === "TEXTAREA" || el.tagName === "SELECT" || el.isContentEditable);
+
+  if (inField) {
+    if (e.key === "Escape") el.blur();
+    return;
+  }
+
+  if (e.key === "ArrowLeft") {
+    e.preventDefault();
+    move(-1);
+  } else if (e.key === "ArrowRight") {
+    e.preventDefault();
+    move(1);
+  } else if (e.key === "t" || e.key === "T") {
+    e.preventDefault();
+    toggleTheater();
+  } else if (e.key === "w" || e.key === "W") {
+    e.preventDefault();
+    toggleWatched(cur());
+  } else if (e.key === "/") {
+    e.preventDefault();
+    if (state.theater) toggleTheater(false);
+    dom.search.focus();
+    dom.search.select();
+  } else if (e.key === "Escape" && state.theater) {
+    toggleTheater(false);
+  }
 });
 
 /* ---------- start ---------- */
 loadState();
+const initialArc = cur();
+syncUrlAndTitle(initialArc, false);
 updateUI();
 renderList();
-mountPlayer(cur());
+mountPlayer(initialArc, false);
 </script>
 </body>
 </html>
